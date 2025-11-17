@@ -1,6 +1,7 @@
 import FeaturedStoryGrid from "./components/featuredstorygrid";
 import Header from "./components/header";
 import Herosection from "./components/herosection";
+import MostRecent from "./components/mostrecent";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
         <Herosection />
         <FeaturedStoryGrid />
       </section>
+      <MostRecent />
     </>
   );
 }
