@@ -17,7 +17,7 @@ const PortraitStoryCard = ({
   href,
 }: PortraitStoryCardProps) => {
   return (
-    <article className="w-full lg:w-[480px] group cursor-pointer overflow-hidden border border-gray-300 hover:border-black transition duration-150">
+    <article className="w-full lg:w-[350px] group cursor-pointer overflow-hidden border border-gray-300 hover:border-black transition duration-150">
       <Link href={href} className="block">
         <div className="relative overflow-hidden bg-gray-100">
           <Image
@@ -30,7 +30,7 @@ const PortraitStoryCard = ({
             priority={false}
           />
         </div>
-        <div className="mt-6 space-y-3 px-6 py-4">
+        <div className="mt-3 space-y-3 px-6 pb-2 flex flex-col justify-between">
           <h2 className="text-xl text-gray-900 leading-tight line-clamp-2">
             {title}
           </h2>
