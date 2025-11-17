@@ -24,7 +24,7 @@ const BillboardHero = ({
           <div className="grid gap-1 lg:grid-cols-6 lg:gap-12 border border-gray-300">
             <div className="text-black flex flex-col justify-between py-5 px-5 col-span-2 order-2">
               <div className="lg:max-w-2xl">
-                <h1 className="text-lg leading-tight tracking-tight sm:text-5xl lg:text-2xl">
+                <h1 className="text-xl leading-tight tracking-tight lg:text-2xl">
                   {title}
                 </h1>
                 <p className="text-[0.85rem] leading-relaxed text-gray-500 mt-3">
