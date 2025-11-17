@@ -6,7 +6,7 @@ const MostRecent = () => {
   return (
     <section className="bg-white px-5 md:px-32 pt-16">
       <div className="flex justify-between items-center border-b border-b-gray-300 pb-3">
-        <p className="text-sm font-semibold">MOST RECENT</p>
+        <p className="text-sm font-semibold text-black">MOST RECENT</p>
         <Link
           href={"/recent"}
           className="h-7 w-7 rounded-full bg-black flex justify-center items-center"
