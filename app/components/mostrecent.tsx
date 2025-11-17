@@ -5,8 +5,8 @@ import PortraitStoryCard from "./portraitstorycard";
 
 const MostRecent = () => {
   return (
-    <section className="bg-white px-3 md:px-32 pt-16">
-      <div className="flex justify-between items-center border-b border-b-gray-300 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
+    <section className="bg-white px-5 md:px-32 pt-16">
+      <div className="flex justify-between items-center border-b border-b-gray-300 pt-2 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
         <p className="text-sm font-semibold text-black">MOST RECENT</p>
         <Link
           href={"/recent"}
