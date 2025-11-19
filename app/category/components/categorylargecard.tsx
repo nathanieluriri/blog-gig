@@ -12,7 +12,7 @@ const CategoryLargeCard: React.FC<ICategoryLargeCard> = ({
   title,
 }) => {
   return (
-    <div className="h-[45dvh] lg:h-dvh w-full overflow-hidden">
+    <div className="h-[54dvh] lg:h-dvh max-h-[700px] w-full overflow-hidden">
       <div className="group relative block h-full">
         <Image
           src={imageSrc}
