@@ -15,7 +15,7 @@ const ArticleLinkCard: React.FC<IArticleLinkCard> = ({
   title,
 }) => {
   return (
-    <div className="h-[55dvh] lg:h-dvh w-full overflow-hidden">
+    <div className="h-[60dvh] lg:h-dvh max-h-[700px] w-full overflow-hidden">
       <Link href={href} className="group relative block h-full">
         <Image
           src={imageSrc}
@@ -31,10 +31,10 @@ const ArticleLinkCard: React.FC<IArticleLinkCard> = ({
             <h1 className="text-2xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
               {title}
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-white/90 font-medium">
+            <p className="mt-4 text-sm md:text-xl text-white/90 font-medium">
               By {author}
             </p>
-            <p className="mt-6 text-white/80 group-hover:text-white transition-colors">
+            <p className="mt-2 font-semibold lg:font-light lg:mt-6 text-white/80 group-hover:text-white transition-colors">
               Read now →
             </p>
           </div>
