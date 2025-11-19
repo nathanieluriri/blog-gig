@@ -19,7 +19,7 @@ const BillboardHero = ({
   return (
     <section className="relative w-full overflow-hidden">
       <Link href={href}>
-        <div className="mx-auto max-w-7xl mt-5">
+        <div className="mx-auto mt-5">
           <div className="grid gap-1 lg:grid-cols-6 lg:gap-12 border border-gray-300">
             <div className="text-black flex flex-col justify-between py-5 px-5 col-span-2 order-2">
               <div className="lg:max-w-2xl">

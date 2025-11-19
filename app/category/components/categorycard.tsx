@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface PortraitStoryCardProps {
+interface CategoryCardProps {
   image: string;
   title: string;
   excerpt: string;
@@ -9,13 +9,13 @@ interface PortraitStoryCardProps {
   href: string;
 }
 
-const PortraitStoryCard = ({
+const CategoryCard = ({
   image,
   title,
   excerpt,
   author,
   href,
-}: PortraitStoryCardProps) => {
+}: CategoryCardProps) => {
   return (
     <article className="w-full group cursor-pointer overflow-hidden border border-gray-300 hover:border-black transition duration-150">
       <Link href={href} className="block">
@@ -46,4 +46,4 @@ const PortraitStoryCard = ({
   );
 };
 
-export default PortraitStoryCard;
+export default CategoryCard;

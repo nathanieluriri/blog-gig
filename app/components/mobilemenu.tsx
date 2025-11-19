@@ -72,7 +72,7 @@ const MobileMenu = () => {
             Videos
           </Link>
           <Link
-            href="/categories"
+            href="/category"
             onClick={() => setIsOpen(false)}
             className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
           >

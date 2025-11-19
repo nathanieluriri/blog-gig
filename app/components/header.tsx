@@ -27,7 +27,7 @@ const Header = () => {
           </Link>
           <Link
             className="hover:underline underline-offset-4 transition-all duration-1000"
-            href={"/categories"}
+            href={"/category"}
           >
             Categories
           </Link>

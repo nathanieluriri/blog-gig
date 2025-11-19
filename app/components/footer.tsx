@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-black/85 text-gray-400 mt-6">
+    <footer className="bg-black/90 text-gray-400 mt-6">
       <div className="hidden md:flex flex-col items-center py-8 border-t border-gray-800">
         <div className="mb-6">
           <svg
