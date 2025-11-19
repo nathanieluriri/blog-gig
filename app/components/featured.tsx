@@ -24,7 +24,7 @@ const Featured = () => {
           href="/blogs/charlotte-flair-today"
         />
       </div>
-      <div className="flex flex-col lg:flex-row gap-6 mt-5">
+      <div className="flex flex-col lg:flex-row gap-6 mt-5 pb-10">
         <PortraitStoryCard
           image="/jordan-love.webp"
           title="None of This Was Supposed to Happen"

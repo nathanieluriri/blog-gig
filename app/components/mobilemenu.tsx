@@ -51,13 +51,6 @@ const MobileMenu = () => {
       >
         <div className="flex flex-col gap-8 text-2xl font-medium">
           <Link
-            href="/blogs"
-            onClick={() => setIsOpen(false)}
-            className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
-          >
-            Blogs
-          </Link>
-          <Link
             href="/about"
             onClick={() => setIsOpen(false)}
             className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"

@@ -3,7 +3,7 @@ import FeaturedStoryGrid from "./featuredstorygrid";
 
 const HeroSection = () => {
   return (
-    <section className="px-0 2xl:px-16 bg-black/85">
+    <section>
       <ArticleLinkCard
         imageSrc="/hero-section_image.webp"
         href="/blogs/letter-to-my-younger-self"

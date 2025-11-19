@@ -5,7 +5,7 @@ import MobileMenu from "./mobilemenu";
 
 const Header = () => {
   return (
-    <header className="bg-black flex justify-between items-center py-5 px-7 sticky top-0 z-50">
+    <header className="bg-black flex justify-between items-center px-3 py-5 lg:px-7 sticky top-0 z-50">
       <div className="flex gap-10">
         <div className="flex gap-3">
           <MobileMenu />
@@ -19,12 +19,6 @@ const Header = () => {
           </Link>
         </div>
         <nav className="text-white hidden lg:flex text-lg font-medium justify-between items-center gap-5">
-          <Link
-            className="hover:underline underline-offset-4 transition-all duration-1000"
-            href={"/blogs"}
-          >
-            Blogs
-          </Link>
           <Link
             className="hover:underline underline-offset-4 transition-all duration-1000"
             href={"/category"}

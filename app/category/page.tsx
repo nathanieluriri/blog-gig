@@ -3,7 +3,7 @@ import CategoryLargeCard from "./components/categorylargecard";
 
 const CategoryPage = () => {
   return (
-    <section>
+    <section className="bg-white">
       <div>
         <CategoryLargeCard
           title="Categories"
@@ -59,7 +59,7 @@ const CategoryPage = () => {
             href="/category/b"
           />
         </div>
-        <div className="flex justify-center items-center mt-8 mb-2">
+        <div className="flex justify-center items-center py-8">
           <button className="bg-black/90 text-white font-semibold w-full lg:w-[31%] lg:max-w-[350px] py-3 cursor-pointer">
             Next
           </button>
