@@ -2,41 +2,58 @@ import Image from "next/image";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
 import MobileMenu from "./mobilemenu";
+import HeaderDropdown from "./headerdropdown";
+import HeaderMoreDropdown from "./headermoredropdown";
+import { BASE_URL } from "../util/api";
 
-const Header = () => {
+export interface IMenuItems {
+  name: string;
+  slug: string;
+}
+
+const Header = async () => {
+  const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
+    cache: "no-cache",
+  });
+
+  let allCategories = [];
+  if (res.ok) {
+    const data = await res.json();
+    allCategories = data.data.listOfCategories;
+  } else {
+    console.error("Failed to fetch categories:", res.status);
+  }
+
+  const mainCategories = allCategories.slice(0, 4);
+  const moreCategories = allCategories.slice(4);
+
   return (
     <header className="bg-black flex justify-between items-center px-3 py-5 lg:px-7 sticky top-0 z-50">
       <div className="flex gap-10">
         <div className="flex gap-3">
-          <MobileMenu />
-          <Link href={"/"}>
+          <MobileMenu data={allCategories} />
+          <Link href="/">
             <Image
-              src={"/logo.svg"}
+              src="/logo.svg"
               alt="blog logo"
               width={135.44}
               height={30}
+              priority
             />
           </Link>
         </div>
-        <nav className="text-white hidden lg:flex text-lg font-medium justify-between items-center gap-5">
-          <Link
-            className="hover:underline underline-offset-4 transition-all duration-1000"
-            href={"/category"}
-          >
-            Categories
-          </Link>
-          <Link
-            className="hover:underline underline-offset-4 transition-all duration-1000"
-            href={"/videos"}
-          >
-            Videos
-          </Link>
-          <Link
-            className="hover:underline underline-offset-4 transition-all duration-1000"
-            href={"/about"}
-          >
-            About
-          </Link>
+
+        <nav className="text-white hidden lg:flex text-sm font-medium items-center gap-5">
+          {mainCategories.map((category: IMenuItems) => (
+            <HeaderDropdown
+              key={category.slug}
+              name={category.name}
+              slug={category.slug}
+            />
+          ))}
+          {moreCategories.length > 0 && (
+            <HeaderMoreDropdown items={moreCategories} label="MORE" />
+          )}
         </nav>
       </div>
       <div>

@@ -5,8 +5,13 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
 import clsx from "clsx";
+import { IMenuItems } from "./header";
 
-const MobileMenu = () => {
+interface IMobileMenuProps {
+  data: IMenuItems[];
+}
+
+const MobileMenu: React.FC<IMobileMenuProps> = ({ data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -50,26 +55,22 @@ const MobileMenu = () => {
         )}
       >
         <div className="flex flex-col gap-8 text-2xl font-medium">
-          <Link
-            href="/about"
-            onClick={() => setIsOpen(false)}
-            className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
-          >
-            About
-          </Link>
+          {data.map((item) => (
+            <Link
+              key={item.slug}
+              href={`/articles/${item.slug}`}
+              onClick={() => setIsOpen(false)}
+              className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
+            >
+              {item.name}
+            </Link>
+          ))}
           <Link
             href="/videos"
             onClick={() => setIsOpen(false)}
             className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
           >
             Videos
-          </Link>
-          <Link
-            href="/category"
-            onClick={() => setIsOpen(false)}
-            className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
-          >
-            Categories
           </Link>
         </div>
       </nav>
