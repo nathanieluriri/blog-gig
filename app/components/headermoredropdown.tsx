@@ -33,33 +33,33 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
         />
       </div>
 
+      {/* Dropdown – now 4 columns */}
       <div
         className={clsx(
-          "absolute right-0 top-full mt-3 w-96 bg-black rounded-lg shadow-2xl overflow-hidden border border-gray-800 transition-all duration-300 ease-out origin-top",
+          "absolute right-0 top-full mt-3 w-[520px] bg-black rounded-lg shadow-2xl overflow-hidden border border-gray-800 transition-all duration-300 ease-out origin-top",
           isOpen
             ? "opacity-100 scale-y-100 visible"
             : "opacity-0 scale-y-95 invisible"
         )}
         style={{ transformOrigin: "top" }}
       >
-        <div className="columns-2 gap-0 p-5">
+        <div className="columns-4 gap-0 p-6">
+          {/* Menu items */}
           {items.map((item) => (
             <Link
               key={item.slug}
               href={`/articles/${item.slug}`}
-              className={
-                "block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
-              }
+              className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
               onClick={() => setIsOpen(false)}
             >
               {item.name}
             </Link>
           ))}
+
+          {/* Videos link */}
           <Link
-            href={`/videos`}
-            className={
-              "block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
-            }
+            href="/videos"
+            className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
             onClick={() => setIsOpen(false)}
           >
             Videos
