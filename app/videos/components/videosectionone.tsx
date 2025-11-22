@@ -140,6 +140,7 @@ const VideoSectionOne: React.FC = () => {
             url={currentVideo.videoUrl}
             onPause={handleVideoPause}
             onPlay={handleVideoPlay}
+            muted={false}
           />
         </div>
         <div className="px-2">
