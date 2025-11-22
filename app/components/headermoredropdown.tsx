@@ -55,6 +55,15 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
               {item.name}
             </Link>
           ))}
+          <Link
+            href={`/videos`}
+            className={
+              "block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
+            }
+            onClick={() => setIsOpen(false)}
+          >
+            Videos
+          </Link>
         </div>
       </div>
     </div>

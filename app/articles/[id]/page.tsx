@@ -1,7 +1,16 @@
+import React from "react";
 import CategoryCard from "./components/categorycard";
 import CategoryLargeCard from "./components/categorylargecard";
 
-const CategoryPage = () => {
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+const CategoryPage: React.FC<Props> = async ({ params }) => {
+  const { id } = await params;
+
+  console.log("Category ID:", id);
+
   return (
     <section className="bg-white">
       <div>
@@ -13,7 +22,7 @@ const CategoryPage = () => {
       </div>
       <div className="px-5 lg:px-28 2xl:px-36 mt-6">
         <div className="flex justify-start items-center border-b border-b-gray-300 pt-2 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
-          <p className="text-sm font-semibold text-black">ALL CATEGORIES</p>
+          <p className="text-sm font-semibold text-black">ALL ARTICLES</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
           <CategoryCard
