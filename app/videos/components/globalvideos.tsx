@@ -101,7 +101,7 @@ const GlobalVideosSection = () => {
         </div>
 
         {/* Fixed grid container */}
-        <div className="grid gap-5 grid-cols-1 lg:grid-cols-12 h-auto md:h-[320px]">
+        <div className="grid gap-5 grid-cols-1 lg:grid-cols-12 h-auto">
           <div className="order-2 lg:order-1 flex flex-col justify-between gap-5 col-span-1 lg:col-span-6 h-full min-h-[350px]">
             <GlobalVideoCard />
             <GlobalVideoCard />

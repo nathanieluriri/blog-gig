@@ -3,7 +3,7 @@ import PlayButtonOverlay from "./playbuttonoverlay";
 
 const GlobalVideoCard = () => {
   return (
-    <div className="bg-white h-16 flex-1 group cursor-pointer">
+    <div className="bg-white flex-1 group cursor-pointer">
       <div className="flex gap-4 h-full">
         <div className="h-full w-[40%] relative shrink-0">
           <Image
