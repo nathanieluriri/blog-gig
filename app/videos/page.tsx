@@ -7,7 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import VideoPlayer from "./components/videoplayer";
 
 interface IVideoData {
@@ -24,7 +24,7 @@ const videoQueue: IVideoData[] = [
     videoDescription:
       "Lamar Odom opens up about his journey, struggles, and redemption in this raw interview.",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
   },
   {
     id: "2",
@@ -32,7 +32,7 @@ const videoQueue: IVideoData[] = [
     videoDescription:
       "President Obama and Derek Jeter discuss leadership, fatherhood, and life after baseball at the White House.",
     videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
   },
   {
     id: "3",
@@ -84,7 +84,7 @@ const videoQueue: IVideoData[] = [
 ];
 
 const VideoPage: React.FC = () => {
-  const [currentVideo, setCurrentVideo] = useState<IVideoData>(videoQueue[1]);
+  const [currentVideo, setCurrentVideo] = useState<IVideoData>(videoQueue[0]);
 
   const handleVideoClick = (video: IVideoData) => {
     setCurrentVideo(video);
@@ -94,11 +94,11 @@ const VideoPage: React.FC = () => {
     <main className="bg-white">
       <section className="grid grid-cols-12 bg-black text-white w-full h-[620px] md:h-[650px]">
         <div className="col-span-full md:col-span-8 h-full">
-          <div className="w-full bg-cyan-500 h-[300px] md:h-[500px]">
+          <div className="w-full h-[300px] md:h-[500px]">
             <VideoPlayer url={currentVideo.videoUrl} />
           </div>
           <div className="px-2">
-            <p className="text-2xl md:text-4xl font-semibold text-justify">
+            <p className="text-2xl md:text-4xl font-semibold text-start md:text-justify">
               {currentVideo.videoName}
             </p>
             <p className="py-2 md:py-5">{currentVideo.videoDescription}</p>
@@ -120,13 +120,19 @@ const VideoPage: React.FC = () => {
           </div>
           <div className="md:hidden h-full">
             <Swiper
-              modules={[Pagination]}
-              spaceBetween={16}
+              modules={[Pagination, Autoplay]}
+              spaceBetween={2}
               slidesPerView={1}
               centeredSlides={true}
               pagination={{ clickable: true }}
               grabCursor={true}
               className="h-fit"
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop={true}
             >
               {videoQueue.map((video) => (
                 <SwiperSlide key={video.id}>
