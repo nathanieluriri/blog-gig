@@ -1,79 +1,147 @@
 "use client";
 
-import React, { useRef } from "react";
-import ReactPlayer from "react-player";
+import {
+  useRef,
+  useEffect,
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from "react";
 import clsx from "clsx";
+import Video from "next-video";
 
 interface VideoPlayerProps {
   url: string;
   className?: string;
-  width?: string | number;
-  height?: string | number;
   playing?: boolean;
-  light?: boolean;
   controls?: boolean;
   volume?: number;
   muted?: boolean;
-  onStart?: () => void;
   onPause?: () => void;
+  onPlay?: () => void;
   onEnded?: () => void;
 }
 
-const VideoPlayer: React.FC<VideoPlayerProps> = ({
-  url,
-  className,
-  width = "100%",
-  height = "100%",
-  playing = true,
-  light = false, // light=true breaks PiP in many cases
-  controls = true,
-  volume = 0.8,
-  muted = false,
-  onStart,
-  onPause,
-  onEnded,
-}) => {
-  const playerRef = useRef<any>(null);
+export interface VideoPlayerHandle {
+  play: () => void;
+  pause: () => void;
+  togglePlay: () => boolean;
+}
 
-  const handleReady = () => {
-    const video =
-      playerRef.current?.getInternalPlayer() as HTMLVideoElement | null;
-    if (
-      video &&
-      document.pictureInPictureEnabled &&
-      !video.disablePictureInPicture
-    ) {
-      video.requestPictureInPicture().catch(() => {});
-    }
-  };
+const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
+  (
+    {
+      url,
+      className,
+      playing = true,
+      controls = true,
+      volume = 0.8,
+      muted = false,
+      onPause,
+      onPlay,
+      onEnded,
+    },
+    ref
+  ) => {
+    const videoRef = useRef<HTMLVideoElement>(null);
+    const [internalPlaying, setInternalPlaying] = useState(playing);
 
-  return (
-    <div
-      className={clsx(
-        "relative overflow-hidden bg-black",
-        "aspect-video w-full",
-        className
-      )}
-      style={{ width, height }}
-    >
-      <ReactPlayer
-        ref={playerRef}
-        src={url}
-        width="100%"
-        height="100%"
-        playing={playing}
-        controls={controls}
-        light={light}
-        volume={volume}
-        muted={muted}
-        onReady={handleReady}
-        onStart={onStart}
-        onPause={onPause}
-        onEnded={onEnded}
-        className="absolute top-0 left-0"
-      />
-    </div>
-  );
-};
+    useEffect(() => {
+      const videoElement = videoRef.current;
+      if (!videoElement) return;
 
+      const handlePlayPause = async () => {
+        try {
+          if (playing && videoElement.paused) {
+            await videoElement.play();
+            setInternalPlaying(true);
+            onPlay?.();
+          } else if (!playing && !videoElement.paused) {
+            videoElement.pause();
+            setInternalPlaying(false);
+            onPause?.();
+          }
+        } catch (error) {
+          console.error("Error controlling video:", error);
+        }
+      };
+
+      handlePlayPause();
+    }, [playing, onPlay, onPause]);
+
+    useEffect(() => {
+      if (videoRef.current) {
+        videoRef.current.volume = volume;
+      }
+    }, [volume]);
+
+    useImperativeHandle(ref, () => ({
+      play: async () => {
+        if (videoRef.current) {
+          try {
+            await videoRef.current.play();
+            setInternalPlaying(true);
+            onPlay?.();
+          } catch (error) {
+            console.error("Error playing video:", error);
+          }
+        }
+      },
+      pause: () => {
+        if (videoRef.current) {
+          videoRef.current.pause();
+          setInternalPlaying(false);
+          onPause?.();
+        }
+      },
+      togglePlay: () => {
+        if (videoRef.current) {
+          if (videoRef.current.paused) {
+            videoRef.current.play().then(() => {
+              setInternalPlaying(true);
+              onPlay?.();
+            });
+            return true;
+          } else {
+            videoRef.current.pause();
+            setInternalPlaying(false);
+            onPause?.();
+            return false;
+          }
+        }
+        return false;
+      },
+    }));
+
+    const handleVideoPlay = () => {
+      setInternalPlaying(true);
+      onPlay?.();
+    };
+
+    const handleVideoPause = () => {
+      setInternalPlaying(false);
+      onPause?.();
+    };
+
+    return (
+      <div className={clsx("bg-black w-full h-full", className)}>
+        <Video
+          ref={videoRef}
+          src={url}
+          controls={controls}
+          autoPlay={playing}
+          muted={muted}
+          playsInline
+          loop={false}
+          preload="metadata"
+          onPlay={handleVideoPlay}
+          onPause={handleVideoPause}
+          onEnded={onEnded}
+        />
+      </div>
+    );
+  }
+);
+
+VideoPlayer.displayName = "VideoPlayer";
 export default VideoPlayer;
