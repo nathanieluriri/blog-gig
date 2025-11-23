@@ -33,9 +33,7 @@ const BlogList = ({
       if (!res.ok) throw new Error("Failed to fetch");
 
       const data = await res.json();
-      const newBlogs: Blog[] = (data.data?.blogs || []).sort(
-        (a: Blog, b: Blog) => (a.itemIndex ?? 999) - (b.itemIndex ?? 999)
-      );
+      const newBlogs: Blog[] = data.data?.blogs || [];
 
       if (newBlogs.length === 0) {
         setHasMore(false);
@@ -64,7 +62,7 @@ const BlogList = ({
             title={blog.title}
             excerpt={blog.excerpt}
             author={blog.author.name}
-            href={`/articles/${blog.slug}`}
+            href={`/blogs/${blog.slug}`}
           />
         ))}
       </div>

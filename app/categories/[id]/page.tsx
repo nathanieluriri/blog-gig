@@ -17,7 +17,6 @@ const CategoryPage: React.FC<Props> = async ({ params }) => {
   const url = `${BASE_URL}/api/v1/articles/content/by-category-slug/${id}?start=${0}&stop=${9}`;
   const res = await fetch(url, {
     next: { revalidate: 60 },
-    cache: "no-cache",
   });
 
   if (!res.ok) {
