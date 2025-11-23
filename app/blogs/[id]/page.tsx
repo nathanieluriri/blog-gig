@@ -51,11 +51,13 @@ const BlogPageById: React.FC<IBlogPageByIdProps> = async ({ params }) => {
       <Header />
       <main className="2xl:max-w-[1470px] mx-auto">
         <BlogLargeCard
+          id={id}
           imageSrc={blog.featureImage.url}
           title={blog.title}
+          excerpt={blog.excerpt}
           imageAlt={`Image showing ${blog.featureImage.altText}`}
         />
-        <section className="flex flex-col lg:grid relative md:grid-cols-12 bg-white px-4 py-5">
+        <section className="flex flex-col lg:gap-10 lg:grid relative lg:grid-cols-12 bg-white px-4 py-5">
           <div className="lg:col-span-2 pb-10 md:pb-0">
             <AuthorCard
               name={blog.author.name}

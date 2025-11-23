@@ -1,16 +1,20 @@
 import Image from "next/image";
-import { IoShareOutline } from "react-icons/io5";
+import ShareButton from "./sharebutton";
 
 interface IBlogLargeCard {
+  id: string;
+  excerpt: string;
   imageSrc: string;
   imageAlt?: string;
   title: string;
 }
 
 const BlogLargeCard: React.FC<IBlogLargeCard> = ({
+  id,
   imageSrc,
   imageAlt,
   title,
+  excerpt,
 }) => {
   return (
     <div className="min-h-[150px] max-h-[90vh] h-[350px] sm:h-[500px] md:min-h-[400px] md:h-screen w-full overflow-hidden">
@@ -34,7 +38,7 @@ const BlogLargeCard: React.FC<IBlogLargeCard> = ({
           <h2 className="text-white">Samuel Adekolu Oluwaseun</h2>
         </div>
         <div className="absolute bottom-0 right-0 flex flex-col justify-end p-6">
-          <IoShareOutline className="text-white cursor-pointer" size={45} />
+          <ShareButton id={id} title={title} excerpt={excerpt} />
         </div>
       </div>
     </div>
