@@ -35,7 +35,7 @@ const BlogLargeCard: React.FC<IBlogLargeCard> = ({
           </div>
         </div>
         <div className="absolute bottom-0 left-0 flex flex-col justify-end p-6">
-          <h2 className="text-white">Samuel Adekolu Oluwaseun</h2>
+          <h2 className="text-white"></h2>
         </div>
         <div className="absolute bottom-0 right-0 flex flex-col justify-end p-6">
           <ShareButton id={id} title={title} excerpt={excerpt} />
