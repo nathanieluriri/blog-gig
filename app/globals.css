@@ -24,3 +24,16 @@
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 } */
+
+/* Remove all padding from BlockNote */
+.bn-container {
+  padding: 0 !important;
+}
+
+.bn-editor {
+  padding: 0 !important;
+}
+
+.bn-block-container {
+  padding: 0 !important;
+}

@@ -55,8 +55,8 @@ const BlogPageById: React.FC<IBlogPageByIdProps> = async ({ params }) => {
           title={blog.title}
           imageAlt={`Image showing ${blog.featureImage.altText}`}
         />
-        <section className="flex flex-col md:grid relative md:grid-cols-12 bg-white md:px-4 py-5">
-          <div className="md:col-span-2 pb-10 md:pb-0">
+        <section className="flex flex-col lg:grid relative md:grid-cols-12 bg-white px-4 py-5">
+          <div className="lg:col-span-2 pb-10 md:pb-0">
             <AuthorCard
               name={blog.author.name}
               avatarUrl={blog.author.avatarUrl}
@@ -64,7 +64,7 @@ const BlogPageById: React.FC<IBlogPageByIdProps> = async ({ params }) => {
               date={blog.dateCreated}
             />
           </div>
-          <article className="md:col-span-10">
+          <article className="lg:col-span-10 bg-white">
             <BlockNoteRenderer content={blog.currentPageBody} />
           </article>
         </section>

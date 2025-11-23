@@ -14,7 +14,11 @@ const BlockNoteRenderer: React.FC<IBlockNoteRendererProp> = ({ content }) => {
     initialContent: content,
   });
 
-  return <BlockNoteView editor={editor} editable={false} />;
+  return (
+    <div className="[&_.bn-container]:p-0 [&_.bn-editor]:p-0">
+      <BlockNoteView editor={editor} editable={false} theme="light" />
+    </div>
+  );
 };
 
 export default BlockNoteRenderer;
