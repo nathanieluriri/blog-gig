@@ -15,8 +15,8 @@ const ShareButton: React.FC<IShareButtonProps> = ({ id, title, excerpt }) => {
 
   const handleShare = () => {
     share({
-      title: { title },
-      text: { excerpt },
+      title: title,
+      text: excerpt,
       url: `https://blog-gig.vercel.app/${id}`,
     });
   };
