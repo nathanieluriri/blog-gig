@@ -10,7 +10,6 @@ const Featured = async () => {
   const url = `${BASE_URL}/api/v1/articles/content/by-blog-type/featured?start=0&stop=4`;
   const res = await fetch(url, {
     next: { revalidate: 60 },
-    cache: "no-cache",
   });
 
   if (!res.ok) {

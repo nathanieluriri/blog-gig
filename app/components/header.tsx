@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FiSearch } from "react-icons/fi";
 import MobileMenu from "./mobilemenu";
 import HeaderDropdown from "./headerdropdown";
 import HeaderMoreDropdown from "./headermoredropdown";

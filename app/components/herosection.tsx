@@ -8,7 +8,6 @@ const HeroSection = async () => {
   const url = `${BASE_URL}/api/v1/articles/content/by-blog-type/hero-section`;
   const res = await fetch(url, {
     next: { revalidate: 60 },
-    cache: "no-cache",
   });
 
   if (!res.ok) {

@@ -10,7 +10,6 @@ const MostRecent = async () => {
   const url = `${BASE_URL}/api/v1/articles/content?start=0&stop=4`;
   const res = await fetch(url, {
     next: { revalidate: 60 },
-    cache: "no-cache",
   });
 
   if (!res.ok) {
