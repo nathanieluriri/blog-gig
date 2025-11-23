@@ -72,7 +72,6 @@ const FeaturedVideoPlayer: React.FC<IVideoData> = ({ videos }) => {
             url={currentVideo.url}
             onPause={handleVideoPause}
             onPlay={handleVideoPlay}
-            muted={false}
           />
         </div>
         <div className="px-2">

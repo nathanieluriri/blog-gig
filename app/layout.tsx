@@ -23,7 +23,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      style={{
+        scrollbarWidth: "thin",
+        scrollbarColor: "#374151 #000000",
+      }}
+    >
       {children}
     </html>
   );

@@ -21,8 +21,8 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
-        protocol: "http",
-        hostname: "http://player-rising-api.aleeaqee.com",
+        protocol: "https", // Updated to https based on your logs
+        hostname: "player-rising-api.aleeaqee.com", // REMOVED "http://"
         port: "",
         pathname: "/**",
       },

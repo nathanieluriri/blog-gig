@@ -123,6 +123,10 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
       onPause?.();
     };
 
+    if (!url) {
+      return <div className={clsx("bg-black w-full h-full", className)} />;
+    }
+
     return (
       <div className={clsx("bg-black w-full h-full", className)}>
         <Video

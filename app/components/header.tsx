@@ -5,6 +5,7 @@ import MobileMenu from "./mobilemenu";
 import HeaderDropdown from "./headerdropdown";
 import HeaderMoreDropdown from "./headermoredropdown";
 import { BASE_URL } from "../util/api";
+import SearchBtn from "./searchbtn";
 
 export interface IMenuItems {
   name: string;
@@ -62,7 +63,7 @@ const Header = async () => {
         </nav>
       </div>
       <div>
-        <FiSearch size={24} className="text-white cursor-pointer" />
+        <SearchBtn />
       </div>
     </header>
   );

@@ -106,7 +106,7 @@ const VideoModal = ({
           <h2 className="text-lg font-semibold text-white">Watch Videos</h2>
           <button
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-white/10 transition"
+            className="p-2 rounded-full hover:bg-white/10 transition cursor-pointer"
             aria-label="Close"
           >
             <LuX className="w-6 h-6 text-white" />
@@ -115,11 +115,14 @@ const VideoModal = ({
         <div
           ref={containerRef}
           className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-black"
+          style={{
+            scrollbarWidth: "thin",
+            scrollbarColor: "#374151 #000000",
+          }}
         >
           <div className="flex flex-col gap-6 py-6 px-4">
             {orderedVideos.map((video) => {
               const isActive = video.id === activeVideoId;
-
               return (
                 <div
                   key={video.id}
@@ -130,7 +133,7 @@ const VideoModal = ({
                       "ring-4 ring-white/70 rounded-xl p-3 -m-3 bg-white/5"
                   )}
                 >
-                  <div className="aspect-video h-full bg-black rounded-lg overflow-hidden shadow-2xl">
+                  <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
                     <VideoPlayer
                       ref={(el) => {
                         videoRefs.current[video.id] = el;
@@ -139,11 +142,11 @@ const VideoModal = ({
                       playing={isActive}
                       controls={true}
                       muted={false}
-                      className="w-full h-full"
+                      className="w-full"
                     />
                   </div>
 
-                  <div className="px-1">
+                  <div className="px-1 py-5">
                     <h3 className="text-2xl lg:text-lg font-semibold text-white line-clamp-2">
                       {video.name.replace(/.mp4$/i, "").replace(/_/g, " ")}
                     </h3>
