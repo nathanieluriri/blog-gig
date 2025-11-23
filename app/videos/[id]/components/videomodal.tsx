@@ -125,12 +125,12 @@ const VideoModal = ({
                   key={video.id}
                   data-video-id={video.id}
                   className={clsx(
-                    "flex flex-col gap-3 transition-all duration-300",
+                    "flex flex-col gap-3 transition-all duration-300 h-[80vh] max-h-[700px] lg:h-full",
                     isActive &&
                       "ring-4 ring-white/70 rounded-xl p-3 -m-3 bg-white/5"
                   )}
                 >
-                  <div className="aspect-video bg-black rounded-lg overflow-hidden shadow-2xl">
+                  <div className="aspect-video h-full bg-black rounded-lg overflow-hidden shadow-2xl">
                     <VideoPlayer
                       ref={(el) => {
                         videoRefs.current[video.id] = el;
@@ -144,7 +144,7 @@ const VideoModal = ({
                   </div>
 
                   <div className="px-1">
-                    <h3 className="text-lg font-semibold text-white line-clamp-2">
+                    <h3 className="text-2xl lg:text-lg font-semibold text-white line-clamp-2">
                       {video.name.replace(/.mp4$/i, "").replace(/_/g, " ")}
                     </h3>
                     {video.category && (
