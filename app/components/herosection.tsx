@@ -43,7 +43,7 @@ const HeroSection = async () => {
     <section>
       <ArticleLinkCard
         imageSrc={mainArticle.featureImage.url}
-        href={`/articles/${mainArticle.slug}`}
+        href={`/blogs/${mainArticle.id}`}
         title={mainArticle.title}
         author={mainArticle.author.name}
       />

@@ -16,7 +16,7 @@ const FeaturedStoryGrid: React.FC<IFeaturedStoryGridProps> = ({ blogs }) => {
             ImgUrl={blog.featureImage.url}
             headerText={blog.title}
             paragraphText={blog.excerpt}
-            href={`/articles/${blog.slug}`}
+            href={`/blogs/${blog.id}`}
           />
         ))}
       </div>

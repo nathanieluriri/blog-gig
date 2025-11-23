@@ -58,7 +58,7 @@ const MostRecent = async () => {
           excerpt={billBoardRecentData.excerpt}
           author={billBoardRecentData.author.name}
           imageUrl={billBoardRecentData.featureImage.url}
-          href={`/articles/${billBoardRecentData.slug}`}
+          href={`/blogs/${billBoardRecentData.id}`}
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-6 mt-5">
@@ -69,7 +69,7 @@ const MostRecent = async () => {
             title={blog.title}
             excerpt={blog.excerpt}
             author={blog.author.name}
-            href={`/acticles/${blog.slug}`}
+            href={`/blogs/${blog.id}`}
           />
         ))}
       </div>

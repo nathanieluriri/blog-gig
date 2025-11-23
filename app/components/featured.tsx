@@ -56,7 +56,7 @@ const Featured = async () => {
           excerpt={billBoardFeaturedData.excerpt}
           author={billBoardFeaturedData.author.name}
           imageUrl={billBoardFeaturedData.featureImage.url}
-          href={`/articles/${billBoardFeaturedData.slug}`}
+          href={`/blogs/${billBoardFeaturedData.id}`}
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-6 mt-5 pb-10">
@@ -67,7 +67,7 @@ const Featured = async () => {
             title={data.title}
             excerpt={data.excerpt}
             author={data.author.name}
-            href={`/articles/${data.slug}`}
+            href={`/blogs/${data.id}`}
           />
         ))}
       </div>
