@@ -2,8 +2,46 @@ import BillboardHero from "./leadstory";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
 import PortraitStoryCard from "./portraitstorycard";
+import { Blog } from "../types/blog";
+import { BASE_URL } from "../util/api";
 
-const MostRecent = () => {
+const MostRecent = async () => {
+  let blogs: Blog[];
+  const url = `${BASE_URL}/api/v1/articles/content/`;
+  const res = await fetch(url, {
+    next: { revalidate: 60 },
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    return (
+      <section className="py-10 text-center text-gray-500">
+        <p>Failed to load recent stories.</p>
+      </section>
+    );
+  }
+
+  try {
+    const data = await res.json();
+    blogs = (data.data?.blogs || []).sort(
+      (a: Blog, b: Blog) => (a.itemIndex ?? 999) - (b.itemIndex ?? 999)
+    );
+  } catch (error) {
+    console.error("Failed to parse recent stories data:", error);
+    return (
+      <section className="py-10 text-center text-gray-500">
+        <p>Something went wrong loading the content.</p>
+      </section>
+    );
+  }
+
+  if (blogs.length === 0) {
+    return null;
+  }
+
+  const billBoardRecentData = blogs[0];
+  const portraitStoryData = blogs.slice(1, 4);
+
   return (
     <section className="bg-white px-5 md:px-32 pt-16">
       <div className="flex justify-between items-center border-b border-b-gray-300 pt-2 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
@@ -17,35 +55,24 @@ const MostRecent = () => {
       </div>
       <div>
         <BillboardHero
-          title="How Am I Going to Be Charlotte Flair Today?"
-          excerpt="Charlotte Flair wrote about…………. everything: “This isn’t for my haters. Honestly, this isn’t even for my fans. This is for myself.”"
-          author="Ashley Fliehr"
-          imageUrl="/charlotte_image.webp"
-          href="/blogs/charlotte-flair-today"
+          title={billBoardRecentData.title}
+          excerpt={billBoardRecentData.excerpt}
+          author={billBoardRecentData.author.name}
+          imageUrl={billBoardRecentData.featureImage.url}
+          href={`/articles/${billBoardRecentData.slug}`}
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-6 mt-5">
-        <PortraitStoryCard
-          image="/jordan-love.webp"
-          title="None of This Was Supposed to Happen"
-          excerpt="Jordan Love in his own words: “Without that brotherhood of football, I never would have made it.”"
-          author="Jordan Love"
-          href="/blogs/none-of-this-was-supposed-to-happen"
-        />
-        <PortraitStoryCard
-          image="/liverpool.webp"
-          title="A Beautiful Suffering"
-          excerpt="Alexis Mac Allister on winning a World Cup for Argentina, the brotherhood of Liverpool FC, and the legacy of Diogo:”"
-          author="Alexis Mac Allister"
-          href="/blogs/none-of-this-was-supposed-to-happen"
-        />
-        <PortraitStoryCard
-          image="/art.webp"
-          title="Two In One: The Briscoe Story"
-          excerpt="Mark Briscoe and the Pugh family share the story of how The Briscoe Brothers built a dynasty over a 20+ year career"
-          author="Mark Briscoe"
-          href="/blogs/none-of-this-was-supposed-to-happen"
-        />
+        {portraitStoryData.map((blog) => (
+          <PortraitStoryCard
+            key={blog.slug}
+            image={blog.featureImage.url}
+            title={blog.title}
+            excerpt={blog.excerpt}
+            author={blog.author.name}
+            href={`/acticles/${blog.slug}`}
+          />
+        ))}
       </div>
     </section>
   );

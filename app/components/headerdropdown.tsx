@@ -34,7 +34,7 @@ const HeaderDropdown: React.FC<IMenuItems> = ({ slug, name }) => {
       >
         <div className="py-2">
           <Link
-            href={`/articles/${slug}`}
+            href={`/categories/${slug}`}
             className="block px-6 py-3 text-white hover:bg-zinc-900 transition-colors duration-200 text-sm font-medium"
             onClick={() => setIsOpen(false)}
           >

@@ -2,8 +2,46 @@ import BillboardHero from "./leadstory";
 import { FaArrowRight } from "react-icons/fa6";
 import Link from "next/link";
 import PortraitStoryCard from "./portraitstorycard";
+import { Blog } from "../types/blog";
+import { BASE_URL } from "../util/api";
 
-const Featured = () => {
+const Featured = async () => {
+  let blogs: Blog[];
+  const url = `${BASE_URL}/api/v1/articles/content/by-blog-type/featured`;
+  const res = await fetch(url, {
+    next: { revalidate: 60 },
+    cache: "no-cache",
+  });
+
+  if (!res.ok) {
+    return (
+      <section className="py-10 text-center text-gray-500">
+        <p>Failed to load recent stories.</p>
+      </section>
+    );
+  }
+
+  try {
+    const data = await res.json();
+    blogs = (data.data?.blogs || []).sort(
+      (a: Blog, b: Blog) => (a.itemIndex ?? 999) - (b.itemIndex ?? 999)
+    );
+  } catch (error) {
+    console.error("Failed to parse featured stories data:", error);
+    return (
+      <section className="py-10 text-center text-gray-500">
+        <p>Something went wrong loading the content.</p>
+      </section>
+    );
+  }
+
+  if (blogs.length === 0) {
+    return null;
+  }
+
+  const billBoardFeaturedData = blogs[0];
+  const portraitStoryData = blogs.slice(1, 4);
+
   return (
     <section className="bg-white px-5 md:px-32 pt-16">
       <div className="flex justify-between items-center border-b border-b-gray-300 pt-2 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
@@ -17,35 +55,24 @@ const Featured = () => {
       </div>
       <div>
         <BillboardHero
-          title="Thank You For Being Perfect, John"
-          excerpt="Meredith Gaudreau remembers the John she knew: “Thank you for the very best years of my life. Thank you for making us a family. Thank...”"
-          author="Meredith Gaudreau"
-          imageUrl="/family_image.webp"
-          href="/blogs/charlotte-flair-today"
+          title={billBoardFeaturedData.title}
+          excerpt={billBoardFeaturedData.excerpt}
+          author={billBoardFeaturedData.author.name}
+          imageUrl={billBoardFeaturedData.featureImage.url}
+          href={`/articles/${billBoardFeaturedData.slug}`}
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-6 mt-5 pb-10">
-        <PortraitStoryCard
-          image="/jordan-love.webp"
-          title="None of This Was Supposed to Happen"
-          excerpt="Jordan Love in his own words: “Without that brotherhood of football, I never would have made it.”"
-          author="Jordan Love"
-          href="/blogs/none-of-this-was-supposed-to-happen"
-        />
-        <PortraitStoryCard
-          image="/liverpool.webp"
-          title="A Beautiful Suffering"
-          excerpt="Alexis Mac Allister on winning a World Cup for Argentina, the brotherhood of Liverpool FC, and the legacy of Diogo:”"
-          author="Alexis Mac Allister"
-          href="/blogs/none-of-this-was-supposed-to-happen"
-        />
-        <PortraitStoryCard
-          image="/art.webp"
-          title="Two In One: The Briscoe Story"
-          excerpt="Mark Briscoe and the Pugh family share the story of how The Briscoe Brothers built a dynasty over a 20+ year career"
-          author="Mark Briscoe"
-          href="/blogs/none-of-this-was-supposed-to-happen"
-        />
+        {portraitStoryData.map((data) => (
+          <PortraitStoryCard
+            key={data.slug}
+            image={data.featureImage.url}
+            title={data.title}
+            excerpt={data.excerpt}
+            author={data.author.name}
+            href={`/articles/${data.slug}`}
+          />
+        ))}
       </div>
     </section>
   );

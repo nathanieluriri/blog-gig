@@ -48,7 +48,7 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
           {items.map((item) => (
             <Link
               key={item.slug}
-              href={`/articles/${item.slug}`}
+              href={`/categories/${item.slug}`}
               className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
               onClick={() => setIsOpen(false)}
             >

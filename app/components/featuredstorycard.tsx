@@ -36,7 +36,7 @@ const FeaturedStoryCard: React.FC<IFeaturedStoryCard> = ({
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center leading-tight line-clamp-3">
               {headerText}
             </h1>
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 font-medium text-center">
+            <p className="text-sm truncate sm:text-base md:text-lg lg:text-xl text-white/90 font-medium text-center">
               {paragraphText}
             </p>
             <p className="mt-4 text-sm md:text-base text-white/70 group-hover:text-white transition-colors font-medium text-center">

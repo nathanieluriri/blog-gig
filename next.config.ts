@@ -8,6 +8,18 @@ const nextConfig: NextConfig = {
         hostname: "commondatastorage.googleapis.com",
         pathname: "/gtv-videos-bucket/**",
       },
+      {
+        protocol: "https",
+        hostname: "iili.io",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "www.iili.io",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
