@@ -2,13 +2,21 @@ import GlobalVideosSection from "./components/globalvideos";
 import VideoCarouselSection from "./components/videocarouselsection";
 import VideoSectionOne from "./components/videosectionone";
 
-const VideoPage = () => {
+interface Props {
+  params: Promise<{ id: string }>;
+}
+
+const VideoPage: React.FC<Props> = async ({ params }) => {
+  const { id } = await params;
+
+  console.log("Category ID:", id);
+
   return (
     <main className="bg-white">
       <VideoSectionOne />
-      <VideoCarouselSection />
+      <VideoCarouselSection id={id} />
       <GlobalVideosSection />
-      <VideoCarouselSection />
+      <VideoCarouselSection id={id} />
     </main>
   );
 };

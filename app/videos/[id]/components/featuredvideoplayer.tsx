@@ -8,88 +8,20 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import VideoPlayer, { VideoPlayerHandle } from "./videoplayer";
+import { MediaItem } from "@/app/types/video";
 
 interface IVideoData {
-  id: string;
-  videoName: string;
-  videoDescription: string;
-  videoUrl: string;
+  videos: MediaItem[];
 }
 
-const videoQueue: IVideoData[] = [
-  {
-    id: "1",
-    videoName: "Lamar Odom - The Player's Pov",
-    videoDescription:
-      "Lamar Odom opens up about his journey, struggles, and redemption in this raw interview.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-  },
-  {
-    id: "2",
-    videoName: "President Obama And Derek Jeter - Full Conversation",
-    videoDescription:
-      "President Obama and Derek Jeter discuss leadership, fatherhood, and life after baseball at the White House.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-  },
-  {
-    id: "3",
-    videoName: "The Making Of The Wisconsin Badgers Offensive Line",
-    videoDescription:
-      "Go behind the scenes with one of college football's most dominant units.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-  },
-  {
-    id: "4",
-    videoName: "The Real Allen Iverson | So ... You Want the Real Story?",
-    videoDescription: "Allen Iverson tells his truth — no filter.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-  },
-  {
-    id: "5",
-    videoName: "The Real Oksana Masters | The Players' Tribune",
-    videoDescription:
-      "Paralympic legend Oksana Masters shares her incredible life story.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  },
-  {
-    id: "6",
-    videoName: "Lamar Odom - The Player's Pov",
-    videoDescription:
-      "Lamar Odom opens up about his journey, struggles, and redemption in this raw interview.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
-  },
-  {
-    id: "7",
-    videoName: "President Obama And Derek Jeter - Full Conversation",
-    videoDescription:
-      "President Obama and Derek Jeter discuss leadership, fatherhood, and life after baseball at the White House.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
-  },
-  {
-    id: "8",
-    videoName: "The Making Of The Wisconsin Badgers Offensive Line",
-    videoDescription:
-      "Go behind the scenes with one of college football's most dominant units.",
-    videoUrl:
-      "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
-  },
-];
-
-const VideoSectionOne: React.FC = () => {
-  const [currentVideo, setCurrentVideo] = useState<IVideoData>(videoQueue[0]);
+const FeaturedVideoPlayer: React.FC<IVideoData> = ({ videos }) => {
+  const [currentVideo, setCurrentVideo] = useState<MediaItem>(videos[0]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const swiperRef = useRef<any>(null);
   const videoPlayerRef = useRef<VideoPlayerHandle>(null);
 
-  const handleVideoClick = async (video: IVideoData) => {
+  const handleVideoClick = async (video: MediaItem) => {
     if (video.id === currentVideo.id) {
       if (videoPlayerRef.current) {
         const nowPlaying = videoPlayerRef.current.togglePlay();
@@ -137,15 +69,15 @@ const VideoSectionOne: React.FC = () => {
           <VideoPlayer
             ref={videoPlayerRef}
             playing={isPlaying}
-            url={currentVideo.videoUrl}
+            url={currentVideo.url}
             onPause={handleVideoPause}
             onPlay={handleVideoPlay}
             muted={false}
           />
         </div>
         <div className="px-2">
-          <p className="pt-2 text-lg md:text-2xl lg:text-4xl font-semibold text-start">
-            {currentVideo.videoName}
+          <p className="pt-2 text-lg md:text-2xl lg:text-4xl font-semibold text-start truncate">
+            {currentVideo.name}
           </p>
         </div>
       </div>
@@ -162,10 +94,10 @@ const VideoSectionOne: React.FC = () => {
           }}
           className="hidden md:block overflow-y-scroll -mr-1 scrollbar-thin scrollbar-thumb-gray-800 hover:scrollbar-thumb-gray-700 h-[560px]"
         >
-          {videoQueue.map((video) => (
+          {videos.map((video) => (
             <VideoShuffleCard
               key={video.id}
-              videoName={video.videoName}
+              videoName={video.name}
               isPlaying={video.id === currentVideo.id && isPlaying}
               isCurrentVideo={video.id === currentVideo.id}
               onClick={() => handleVideoClick(video)}
@@ -186,10 +118,10 @@ const VideoSectionOne: React.FC = () => {
             onSwiper={(swiper) => (swiperRef.current = swiper)}
             onSlideChange={handleSlideChange}
           >
-            {videoQueue.map((video) => (
+            {videos.map((video) => (
               <SwiperSlide key={video.id}>
                 <VideoShuffleCard
-                  videoName={video.videoName}
+                  videoName={video.name}
                   isPlaying={video.id === currentVideo.id && isPlaying}
                   isCurrentVideo={video.id === currentVideo.id}
                   onClick={() => handleVideoClick(video)}
@@ -198,7 +130,7 @@ const VideoSectionOne: React.FC = () => {
             ))}
           </Swiper>
           <div className="flex justify-center items-center space-x-2 my-4">
-            {videoQueue.map((_, index) => (
+            {videos.map((_, index) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -217,4 +149,4 @@ const VideoSectionOne: React.FC = () => {
   );
 };
 
-export default VideoSectionOne;
+export default FeaturedVideoPlayer;

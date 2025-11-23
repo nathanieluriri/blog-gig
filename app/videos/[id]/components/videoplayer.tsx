@@ -137,6 +137,7 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
           onPlay={handleVideoPlay}
           onPause={handleVideoPause}
           onEnded={onEnded}
+          type="hls"
         />
       </div>
     );

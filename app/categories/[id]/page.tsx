@@ -30,9 +30,7 @@ const CategoryPage: React.FC<Props> = async ({ params }) => {
 
   try {
     const data = await res.json();
-    blogs = (data.data?.blogs || []).sort(
-      (a: Blog, b: Blog) => (a.itemIndex ?? 999) - (b.itemIndex ?? 999)
-    );
+    blogs = data.data?.blogs || [];
   } catch (error) {
     console.error("Failed to load blogs", error);
     return (

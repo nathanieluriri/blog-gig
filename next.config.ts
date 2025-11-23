@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "http://player-rising-api.aleeaqee.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

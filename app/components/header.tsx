@@ -22,6 +22,11 @@ const Header = async () => {
     allCategories = data.data.listOfCategories;
   } else {
     console.error("Failed to fetch categories:", res.status);
+    return (
+      <section className="py-10 text-center text-gray-500">
+        <p>Something went wrong loading the content.</p>
+      </section>
+    );
   }
 
   const mainCategories = allCategories.slice(0, 4);
