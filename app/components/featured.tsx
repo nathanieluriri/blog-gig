@@ -7,7 +7,7 @@ import { BASE_URL } from "../util/api";
 
 const Featured = async () => {
   let blogs: Blog[];
-  const url = `${BASE_URL}/api/v1/articles/content/by-blog-type/featured`;
+  const url = `${BASE_URL}/api/v1/articles/content/by-blog-type/featured?start=0&stop=4`;
   const res = await fetch(url, {
     next: { revalidate: 60 },
     cache: "no-cache",
@@ -23,9 +23,7 @@ const Featured = async () => {
 
   try {
     const data = await res.json();
-    blogs = (data.data?.blogs || []).sort(
-      (a: Blog, b: Blog) => (a.itemIndex ?? 999) - (b.itemIndex ?? 999)
-    );
+    blogs = data.data?.blogs || [];
   } catch (error) {
     console.error("Failed to parse featured stories data:", error);
     return (
