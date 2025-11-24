@@ -1,28 +1,90 @@
+import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Footer: React.FC = () => {
   return (
     <footer className="bg-[#1A1A1A] text-gray-400 mt-6">
-      <div className="hidden md:flex flex-col items-center py-8 border-t border-gray-800">
-        <div className="mb-6">
-          <svg
-            width="48"
-            height="36"
-            viewBox="0 0 48 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18.6667 0C12.6667 0 8.66667 6.24 8.66667 13.44C8.66667 20.64 12.6667 27.36 24 36C35.3333 27.36 39.3333 20.64 39.3333 13.44C39.3333 6.24 35.3333 0 29.3333 0C25.3333 0 21.3333 3.36 18.6667 9.12C18.6667 6.08 18.6667 3.04 18.6667 0Z"
-              fill="white"
-              fillOpacity="0.1"
-            />
-          </svg>
+      <div className="hidden md:flex flex-col items-center py-8">
+        <div className="mb-14 border-t border-t-gray-400 w-full relative px-8">
+          <Image
+            src="/logo-footer.png"
+            alt="footer-image"
+            width={68}
+            height={76}
+            className="w-14 h-10 absolute -top-5 left-1/2 transform -translate-x-1/3 bg-[#1A1A1A]"
+          />
+        </div>
+        <div className="flex flex-col items-center gap-4 text-sm uppercase tracking-wider">
+          <div className="flex justify-center gap-8">
+            <div className="flex flex-col gap-4">
+              <Link href="#" className="hover:text-white transition">
+                About
+              </Link>
+              <Link href="#" className="hover:text-white transition">
+                Cookie Policy
+              </Link>
+            </div>
+            <div className="flex flex-col gap-4">
+              <Link href="#" className="hover:text-white transition">
+                Athlete Application
+              </Link>
+              <a href="#" className="hover:text-white transition">
+                Newsletter
+              </a>
+            </div>
+            <div className="flex flex-col gap-4">
+              <Link href="#" className="hover:text-white transition">
+                Careers
+              </Link>
+              <a href="#" className="hover:text-white transition">
+                Accessibility Statement
+              </a>
+            </div>
+            <div className="flex flex-col gap-4">
+              <Link href="#" className="hover:text-white transition">
+                Privacy
+              </Link>
+              <Link href="#" className="hover:text-white transition">
+                A-Z Index
+              </Link>
+            </div>
+            <div className="flex flex-col gap-4">
+              <Link href="#" className="hover:text-white transition">
+                Terms
+              </Link>
+              <a href="#" className="hover:text-white transition">
+                Cookies Settings
+              </a>
+            </div>
+          </div>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm uppercase tracking-wider">
+        <div className="mt-8 text-xs text-gray-500 w-full border-t border-t-gray-400 pt-3">
+          <p className="text-center">
+            © {new Date().getFullYear()} - All Rights Reserved
+          </p>
+        </div>
+      </div>
+
+      {/* Mobile view */}
+      <div className="md:hidden flex flex-col items-center py-8">
+        <div className="mb-14 border-t border-t-gray-400 w-full relative px-8">
+          <Image
+            src="/logo-footer.png"
+            alt="footer-image"
+            width={68}
+            height={76}
+            className="w-14 h-10 absolute -top-5 left-1/2 transform -translate-x-1/3 bg-[#1A1A1A]"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-xs uppercase tracking-wider text-center px-6 w-full max-w-md">
           <a href="#" className="hover:text-white transition">
             About
+          </a>
+          <a href="#" className="hover:text-white transition">
+            Athlete Application
           </a>
           <a href="#" className="hover:text-white transition">
             Careers
@@ -40,50 +102,7 @@ const Footer: React.FC = () => {
             Newsletter
           </a>
           <a href="#" className="hover:text-white transition">
-            A-Z Index
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Cookies Settings
-          </a>
-        </div>
-
-        <div className="mt-8 text-xs text-gray-500">
-          © {new Date().getFullYear()} - All Rights Reserved
-        </div>
-      </div>
-
-      <div className="md:hidden flex flex-col items-center py-8 border-t border-gray-800">
-        <div className="mb-6">
-          <svg
-            width="40"
-            height="30"
-            viewBox="0 0 48 36"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M18.6667 0C12.6667 0 8.66667 6.24 8.66667 13.44C8.66667 20.64 12.6667 27.36 24 36C35.3333 27.36 39.3333 20.64 39.3333 13.44C39.3333 6.24 35.3333 0 29.3333 0C25.3333 0 21.3333 3.36 18.6667 9.12C18.6667 6.08 18.6667 3.04 18.6667 0Z"
-              fill="white"
-              fillOpacity="0.1"
-            />
-          </svg>
-        </div>
-
-        <div className="grid grid-cols-2 gap-x-8 gap-y-5 text-xs uppercase tracking-wider text-center px-6 w-full max-w-md">
-          <a href="#" className="hover:text-white transition">
-            About
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Privacy
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Terms
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Cookie Policy
-          </a>
-          <a href="#" className="hover:text-white transition">
-            Newsletter
+            Accessibility Statement
           </a>
           <a href="#" className="hover:text-white transition">
             A-Z Index
@@ -93,8 +112,10 @@ const Footer: React.FC = () => {
           </a>
         </div>
 
-        <div className="mt-8 text-xs text-gray-500">
-          © {new Date().getFullYear()} - All Rights Reserved
+        <div className="mt-8 text-xs text-gray-500 w-full border-t border-t-gray-400 pt-3">
+          <p className="text-center">
+            © {new Date().getFullYear()} - All Rights Reserved
+          </p>
         </div>
       </div>
     </footer>

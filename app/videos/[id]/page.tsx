@@ -1,6 +1,4 @@
 import { BASE_URL } from "@/app/util/api";
-import GlobalVideosSection from "./components/globalvideos";
-import VideoCarouselSection from "./components/videocarouselsection";
 import VideoSectionOne from "./components/videosectionone";
 import { MediaApiResponse, MediaItem } from "@/app/types/video";
 import { notFound } from "next/navigation";
@@ -19,23 +17,6 @@ const VideoBySlugPage = async ({ params }: Props) => {
 
   console.log("Category ID:", id);
 
-  // --- Fetch 1: Featured Videos ---
-  const featuredRes = await fetch(`${BASE_URL}/api/v1/media/by-type/video`, {
-    next: { revalidate: 60 },
-  });
-
-  if (!featuredRes.ok) {
-    return (
-      <section className="py-10 text-center text-gray-500">
-        <p>Something went wrong loading featured content.</p>
-      </section>
-    );
-  }
-
-  const featuredJson: MediaApiResponse = await featuredRes.json();
-  const featuredVideos: MediaItem[] = featuredJson.data?.listOfMedia || [];
-
-  // --- Fetch 2: Category Videos ---
   const categoryUrl = `${BASE_URL}/api/v1/media/by-category/${id}`;
   console.log("Fetching category videos from:", categoryUrl);
 
@@ -71,10 +52,7 @@ const VideoBySlugPage = async ({ params }: Props) => {
 
   return (
     <main className="bg-white">
-      <VideoSectionOne videos={featuredVideos} />
-      <VideoCarouselSection videos={categoryVideos} />
-      <GlobalVideosSection />
-      <VideoCarouselSection videos={categoryVideos} />
+      <VideoSectionOne videos={categoryVideos} />
     </main>
   );
 };

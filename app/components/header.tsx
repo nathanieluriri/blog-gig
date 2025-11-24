@@ -39,7 +39,7 @@ const Header = async () => {
           <MobileMenu data={allCategories} />
           <Link href="/">
             <Image
-              src="/logo.svg"
+              src="/logo-footer.png"
               alt="blog logo"
               width={135.44}
               height={30}
