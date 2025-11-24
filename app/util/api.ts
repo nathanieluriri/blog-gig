@@ -1,3 +1,3 @@
-const BASE_URL = `https://api.theplayersrising.com/`;
+const BASE_URL = `https://api.theplayersrising.com`;
 
 export { BASE_URL };

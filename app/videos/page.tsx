@@ -46,8 +46,8 @@ const VideosPage = async () => {
     <div className="bg-white min-h-screen">
       <VideoLargeCard
         title="Videos"
-        imageSrc="/hands_raised.webp"
-        imageAlt="People raising hands"
+        imageSrc={categories[0].imageUrl || "/hands_raised.webp"}
+        imageAlt={categories[0].slug || "People raising hands"}
       />
       <div className="max-w-7xl mx-auto px-4 py-8">
         <VideoList categories={categories} />

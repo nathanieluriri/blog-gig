@@ -53,9 +53,9 @@ const Footer: React.FC = () => {
               <Link href="#" className="hover:text-white transition">
                 Terms
               </Link>
-              <a href="#" className="hover:text-white transition">
+              <Link href="#" className="hover:text-white transition">
                 Cookies Settings
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -80,36 +80,36 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-xs uppercase tracking-wider text-center px-6 w-full max-w-md">
-          <a href="#" className="hover:text-white transition">
+          <Link href="#" className="hover:text-white transition">
             About
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Athlete Application
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Careers
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Privacy
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Terms
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Cookie Policy
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Newsletter
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Accessibility Statement
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             A-Z Index
-          </a>
-          <a href="#" className="hover:text-white transition">
+          </Link>
+          <Link href="#" className="hover:text-white transition">
             Cookies Settings
-          </a>
+          </Link>
         </div>
 
         <div className="mt-8 text-xs text-gray-500 w-full border-t border-t-gray-400 pt-3">
