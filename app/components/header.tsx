@@ -41,7 +41,7 @@ const Header = async () => {
             <Image
               src="/logo-footer.png"
               alt="blog logo"
-              width={135.44}
+              width={70.44}
               height={30}
               priority
             />

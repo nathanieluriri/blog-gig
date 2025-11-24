@@ -32,7 +32,6 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
           )}
         />
       </div>
-
       {/* Dropdown – now 4 columns */}
       <div
         className={clsx(
@@ -44,6 +43,13 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
         style={{ transformOrigin: "top" }}
       >
         <div className="columns-4 gap-0 p-6">
+          <Link
+            href="/videos"
+            className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
+            onClick={() => setIsOpen(false)}
+          >
+            Videos
+          </Link>
           {/* Menu items */}
           {items.map((item) => (
             <Link
@@ -55,15 +61,6 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
               {item.name}
             </Link>
           ))}
-
-          {/* Videos link */}
-          <Link
-            href="/videos"
-            className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
-            onClick={() => setIsOpen(false)}
-          >
-            Videos
-          </Link>
         </div>
       </div>
     </div>
