@@ -140,12 +140,14 @@ const VideoCarousel: React.FC<IVideoCarouselProps> = ({ videos }) => {
           </Swiper>
         )}
       </div>
-      <VideoModal
-        videos={videos}
-        initialVideoId={selectedVideoId}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-      />
+      <div className="relative">
+        <VideoModal
+          videos={videos}
+          initialVideoId={selectedVideoId}
+          isOpen={isModalOpen}
+          onClose={closeModal}
+        />
+      </div>
     </div>
   );
 };
