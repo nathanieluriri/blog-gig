@@ -50,11 +50,18 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({ data }) => {
       </button>
       <nav
         className={clsx(
-          "fixed top-20 bottom-0 left-0 w-full bg-black text-white flex flex-col gap-12 px-8 py-16 transition-transform duration-500 ease-in-out lg:hidden z-40 overflow-auto",
+          "fixed top-20 bottom-0 left-0 w-full bg-black text-white flex flex-col gap-12 px-8 py-10 transition-transform duration-500 ease-in-out lg:hidden z-40 overflow-auto",
           isOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
         <div className="flex flex-col gap-8 text-2xl font-medium">
+          <Link
+            href="/videos"
+            onClick={() => setIsOpen(false)}
+            className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
+          >
+            Videos
+          </Link>
           {data.map((item) => (
             <Link
               key={item.slug}
@@ -65,13 +72,6 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({ data }) => {
               {item.name}
             </Link>
           ))}
-          <Link
-            href="/videos"
-            onClick={() => setIsOpen(false)}
-            className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
-          >
-            Videos
-          </Link>
         </div>
       </nav>
     </>

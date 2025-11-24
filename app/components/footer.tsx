@@ -6,7 +6,7 @@ import { CategoryApiResponse } from "../types/category";
 
 const Footer: React.FC = async () => {
   const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
-    cache: "no-cache",
+    next: { revalidate: 60 },
   });
 
   let allCategories = [];
@@ -68,7 +68,8 @@ const Footer: React.FC = async () => {
 
         <div className="mt-8 text-xs text-gray-500 w-full border-t border-t-gray-400 pt-3">
           <p className="text-center">
-            © {new Date().getFullYear()} - All Rights Reserved
+            The Player's Rising, © {new Date().getFullYear()} All
+            rights reserved.
           </p>
         </div>
       </div>
@@ -106,7 +107,8 @@ const Footer: React.FC = async () => {
 
         <div className="mt-8 text-xs text-gray-500 w-full border-t border-t-gray-400 pt-3">
           <p className="text-center">
-            © {new Date().getFullYear()} - All Rights Reserved
+            The Player's Rising, © {new Date().getFullYear()} All
+            rights reserved.
           </p>
         </div>
       </div>
