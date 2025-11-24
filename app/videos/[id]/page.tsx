@@ -50,6 +50,22 @@ const VideoBySlugPage = async ({ params }: Props) => {
     );
   }
 
+  if (categoryVideos.length === 0) {
+    return (
+      <section>
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <div className="text-gray-400 text-lg mb-2">📭</div>
+          <h3 className="text-white text-xl font-semibold mb-2">
+            No Videos found
+          </h3>
+          <p className="text-gray-400">
+            We couldn't find any video matching your criteria.
+          </p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <main className="bg-white">
       <VideoSectionOne videos={categoryVideos} />

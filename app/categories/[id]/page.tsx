@@ -40,7 +40,19 @@ const CategoryPage: React.FC<Props> = async ({ params }) => {
   }
 
   if (blogs.length === 0) {
-    return null;
+    return (
+      <section>
+        <div className="flex flex-col items-center justify-center py-12 text-center">
+          <div className="text-gray-400 text-lg mb-2">📭</div>
+          <h3 className="text-white text-xl font-semibold mb-2">
+            No categories found
+          </h3>
+          <p className="text-gray-400">
+            We couldn't find any categories matching your criteria.
+          </p>
+        </div>
+      </section>
+    );
   }
 
   const categoryName = blogs[0].category.name;
