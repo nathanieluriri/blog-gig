@@ -106,17 +106,17 @@ const VideoCarousel: React.FC<IVideoCarouselProps> = ({ videos }) => {
               //   spaceBetween: 15,
               // },
               722: {
-                slidesPerView: 1.5,
+                slidesPerView: 3,
                 centeredSlides: true,
                 spaceBetween: 15,
               },
               900: {
-                slidesPerView: 1.5,
+                slidesPerView: 3.5,
                 centeredSlides: true,
                 spaceBetween: 12,
               },
               1078: {
-                slidesPerView: 1.5,
+                slidesPerView: 3.5,
                 centeredSlides: true,
                 spaceBetween: 15,
               },
