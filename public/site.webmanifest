@@ -1,7 +1,7 @@
 {
-  "name": "My Awesome Blog",
-  "short_name": "AwesomeBlog",
-  "description": "A modern blog about Next.js, React, TypeScript, and beautiful web experiences.",
+  "name": " The Players Rising",
+  "short_name": "The Players Rising",
+  "description": "A modern blog",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -2,6 +2,7 @@ export interface Category {
   itemIndex: number;
   name: string;
   slug: string;
+  imageUrl?: string | null;
 }
 
 export interface CategoryApiResponse {

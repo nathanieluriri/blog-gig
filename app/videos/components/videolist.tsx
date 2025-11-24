@@ -14,7 +14,7 @@ const VideoList = ({ categories }: { categories: Category[] }) => {
         {categories.map((category, index) => (
           <VideoCard
             key={index}
-            image={"/art.webp"}
+            image={category?.imageUrl || "/logo-footer.png"}
             title={category.name}
             href={`/videos/${category.slug}`}
           />
