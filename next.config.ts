@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  experimental: {
+    viewTransition: true, // Enables React's ViewTransition API
+  },
   images: {
     remotePatterns: [
       {

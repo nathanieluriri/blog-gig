@@ -1,5 +1,3 @@
-import Footer from "@/app/components/footer";
-import Header from "@/app/components/header";
 import BlogLargeCard from "./components/bloglargecard";
 import Featured from "@/app/components/featured";
 import AuthorCard from "./components/authorcard";
@@ -47,35 +45,31 @@ const BlogPageById: React.FC<IBlogPageByIdProps> = async ({ params }) => {
   }
 
   return (
-    <body className={`antialiased bg-[#1A1A1A]`}>
-      <Header />
-      <main className="2xl:max-w-[1470px] mx-auto">
-        <BlogLargeCard
-          id={id}
-          imageSrc={blog.featureImage.url}
-          title={blog.title}
-          excerpt={blog.excerpt}
-          imageAlt={`Image showing ${blog.featureImage.altText}`}
-        />
-        <section className="flex flex-col lg:gap-10 lg:grid relative lg:grid-cols-12 bg-white px-4 py-5">
-          <div className="lg:col-span-2 pb-10 md:pb-0">
-            <AuthorCard
-              name={blog.author.name}
-              avatarUrl={blog.author.avatarUrl}
-              affiliation={blog.author.affiliation}
-              date={blog.dateCreated}
-            />
-          </div>
-          <article className="lg:col-span-10 bg-white">
-            <BlockNoteRenderer content={blog.currentPageBody} />
-          </article>
-        </section>
-        <section>
-          <Featured />
-        </section>
-      </main>
-      <Footer />
-    </body>
+    <section className="2xl:max-w-[1470px] mx-auto">
+      <BlogLargeCard
+        id={id}
+        imageSrc={blog.featureImage.url}
+        title={blog.title}
+        excerpt={blog.excerpt}
+        imageAlt={`Image showing ${blog.featureImage.altText}`}
+      />
+      <section className="flex flex-col lg:gap-10 lg:grid relative lg:grid-cols-12 bg-white px-4 py-5">
+        <div className="lg:col-span-2 pb-10 md:pb-0">
+          <AuthorCard
+            name={blog.author.name}
+            avatarUrl={blog.author.avatarUrl}
+            affiliation={blog.author.affiliation}
+            date={blog.dateCreated}
+          />
+        </div>
+        <article className="lg:col-span-10 bg-white">
+          <BlockNoteRenderer content={blog.currentPageBody} />
+        </article>
+      </section>
+      <section>
+        <Featured />
+      </section>
+    </section>
   );
 };
 

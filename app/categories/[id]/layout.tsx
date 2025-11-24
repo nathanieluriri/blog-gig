@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import Header from "@/app/components/header";
-import Footer from "@/app/components/footer";
 
 export const metadata: Metadata = {
   title: "Articles | Blog",
@@ -13,10 +11,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <body className={`antialiased bg-white`}>
-      <Header />
-      <main>{children}</main>
-      <Footer />
-    </body>
+    <>
+      <section>{children}</section>
+    </>
   );
 }

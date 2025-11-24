@@ -43,17 +43,16 @@ const VideosPage = async () => {
   }
 
   return (
-    <section className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen">
       <VideoLargeCard
         title="Videos"
         imageSrc="/hands_raised.webp"
         imageAlt="People raising hands"
       />
-
       <div className="max-w-7xl mx-auto px-4 py-8">
         <VideoList categories={categories} />
       </div>
-    </section>
+    </div>
   );
 };
 

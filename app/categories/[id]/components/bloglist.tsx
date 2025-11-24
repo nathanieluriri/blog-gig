@@ -62,7 +62,7 @@ const BlogList = ({
             title={blog.title}
             excerpt={blog.excerpt}
             author={blog.author.name}
-            href={`/blogs/${blog.slug}`}
+            href={`/blogs/${blog.id}`}
           />
         ))}
       </div>

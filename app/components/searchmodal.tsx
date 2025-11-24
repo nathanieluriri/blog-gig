@@ -103,13 +103,14 @@ const SearchModal = ({ open, onClose }: SearchModalProps) => {
 
           {results.map((blog, index) => (
             <Link
-              href={`/blogs/${blog.slug}`}
-              key={blog.id}
+              href={`/blogs/${blog.id}`}
+              key={index}
               className={clsx(
                 "block border-b py-3 transform transition-all duration-300",
                 open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2",
                 `delay-[${index * 75}ms]`
               )}
+              onClick={onClose}
             >
               <p className="font-semibold">{blog.title}</p>
               <p className="text-sm text-gray-500">{blog.author.name}</p>
