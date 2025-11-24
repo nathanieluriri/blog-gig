@@ -91,7 +91,7 @@ export default function RootLayout({
         scrollbarColor: "#374151 #000000",
       }}
     >
-      <body className="relative">
+      <body className="relative bg-[#1A1A1A]">
         <Header />
         <AnimatedPage>{children}</AnimatedPage>
         <Footer />
