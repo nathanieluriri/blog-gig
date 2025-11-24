@@ -68,65 +68,77 @@ const VideoCarousel: React.FC<IVideoCarouselProps> = ({ videos }) => {
             <FiArrowRight size={40} className="text-black" />
           </div>
         </div>
-        <Swiper
-          modules={[Autoplay]}
-          autoplay={{
-            delay: 4000,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: true,
-          }}
-          loop={true}
-          spaceBetween={16}
-          slidesPerView={1.5}
-          centeredSlides={true}
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
-          breakpoints={{
-            510: {
-              slidesPerView: 3,
-              centeredSlides: true,
-              spaceBetween: 15,
-            },
-            603: {
-              slidesPerView: 2.2,
-              centeredSlides: true,
-              spaceBetween: 15,
-            },
-
-            722: {
-              slidesPerView: 1.5,
-              centeredSlides: true,
-              spaceBetween: 15,
-            },
-            900: {
-              slidesPerView: 1.5,
-              centeredSlides: true,
-              spaceBetween: 12,
-            },
-            1078: {
-              slidesPerView: 1.5,
-              centeredSlides: true,
-              spaceBetween: 15,
-            },
-            1200: {
-              slidesPerView: 4,
-              centeredSlides: false,
-              spaceBetween: 15,
-            },
-          }}
-          className="video-swiper"
-        >
-          {videos.map((video) => (
-            <SwiperSlide key={video.id}>
-              <VideoCard
-                thumbNameUrl={"/charlotte_image.webp"}
-                videoName={video.name}
-                onClick={() => openModal(video.id)}
-              />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {videos.length === 1 ? (
+          <VideoCard
+            thumbNameUrl={"/charlotte_image.webp"}
+            videoName={videos[0].name}
+            onClick={() => openModal(videos[0].id)}
+          />
+        ) : (
+          <Swiper
+            modules={[Autoplay]}
+            autoplay={{
+              delay: 4000,
+              disableOnInteraction: false,
+              pauseOnMouseEnter: true,
+            }}
+            loop={videos.length > 1}
+            spaceBetween={16}
+            slidesPerView={1.5}
+            centeredSlides={true}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+            }}
+            breakpoints={{
+              1: {
+                slidesPerView: 1,
+                centeredSlides: true,
+                spaceBetween: 15,
+              },
+              // 510: {
+              //   slidesPerView: 3,
+              //   centeredSlides: true,
+              //   spaceBetween: 15,
+              // },
+              // 603: {
+              //   slidesPerView: 2.2,
+              //   centeredSlides: true,
+              //   spaceBetween: 15,
+              // },
+              722: {
+                slidesPerView: 1.5,
+                centeredSlides: true,
+                spaceBetween: 15,
+              },
+              900: {
+                slidesPerView: 1.5,
+                centeredSlides: true,
+                spaceBetween: 12,
+              },
+              1078: {
+                slidesPerView: 1.5,
+                centeredSlides: true,
+                spaceBetween: 15,
+              },
+              1200: {
+                slidesPerView: 4,
+                centeredSlides: false,
+                spaceBetween: 15,
+              },
+            }}
+            className="video-swiper"
+          >
+            {videos.map((video) => (
+              <SwiperSlide key={video.id}>
+                <VideoCard
+                  thumbNameUrl={"/charlotte_image.webp"}
+                  videoName={video.name}
+                  onClick={() => openModal(video.id)}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
       <VideoModal
         videos={videos}
