@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <section className={`antialiased bg-white`}>
+    <section className={`antialiased bg-[#1A1A1A]`}>
       <div>{children}</div>
     </section>
   );

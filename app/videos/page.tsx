@@ -10,7 +10,6 @@ const VideosPage = async () => {
 
   try {
     const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
-      cache: "no-cache",
       next: { revalidate: 60 },
     });
 
@@ -27,7 +26,7 @@ const VideosPage = async () => {
 
   if (categories.length === 0) {
     return (
-      <section className="bg-white min-h-screen">
+      <section className="min-h-screen">
         <VideoLargeCard
           title="Videos"
           imageSrc="/hands_raised.webp"
