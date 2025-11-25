@@ -1,6 +1,4 @@
 import BillboardHero from "./leadstory";
-import { FaArrowRight } from "react-icons/fa6";
-import Link from "next/link";
 import PortraitStoryCard from "./portraitstorycard";
 import { Blog } from "../types/blog";
 import { BASE_URL } from "../util/api";
@@ -22,9 +20,7 @@ const MostRecent = async () => {
 
   try {
     const data = await res.json();
-    blogs = (data.data?.blogs || []).sort(
-      (a: Blog, b: Blog) => (a.itemIndex ?? 999) - (b.itemIndex ?? 999)
-    );
+    blogs = data.data?.blogs || [];
   } catch (error) {
     console.error("Failed to parse recent stories data:", error);
     return (
@@ -45,12 +41,6 @@ const MostRecent = async () => {
     <section className="bg-white px-5 md:px-32 pt-16">
       <div className="flex justify-between items-center border-b border-b-gray-300 pt-2 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
         <p className="text-sm font-semibold text-black">MOST RECENT</p>
-        <Link
-          href={"/recent"}
-          className="h-7 w-7 rounded-full bg-black flex justify-center items-center"
-        >
-          <FaArrowRight className="text-white" size={20} />
-        </Link>
       </div>
       <div>
         <BillboardHero

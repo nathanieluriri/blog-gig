@@ -1,6 +1,4 @@
 import BillboardHero from "./leadstory";
-import { FaArrowRight } from "react-icons/fa6";
-import Link from "next/link";
 import PortraitStoryCard from "./portraitstorycard";
 import { Blog } from "../types/blog";
 import { BASE_URL } from "../util/api";
@@ -43,12 +41,6 @@ const Featured = async () => {
     <section className="bg-white px-5 md:px-32 pt-16">
       <div className="flex justify-between items-center border-b border-b-gray-300 pt-2 pb-3 sticky top-[78px] lg:top-[70px] z-40 bg-white">
         <p className="text-sm font-semibold text-black">FEATURED STORY</p>
-        <Link
-          href={"/featured"}
-          className="h-7 w-7 rounded-full bg-black flex justify-center items-center"
-        >
-          <FaArrowRight className="text-white" size={20} />
-        </Link>
       </div>
       <div>
         <BillboardHero

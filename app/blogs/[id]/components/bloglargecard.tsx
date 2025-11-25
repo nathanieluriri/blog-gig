@@ -27,7 +27,7 @@ const BlogLargeCard: React.FC<IBlogLargeCard> = ({
           priority
         />
         <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-black/20" />
-        <div className="absolute bottom-14 flex flex-col justify-end p-6 md:p-12 lg:p-16">
+        <div className="absolute inset-0 md:inset-y-0 md:left-0 bottom-14 flex flex-col justify-end p-6 md:p-12 lg:p-16">
           <div className="text-center">
             <h2 className="text-2xl md:text-3xl lg:text-4xl italic font-bold text-white leading-tight">
               {title}
@@ -37,7 +37,7 @@ const BlogLargeCard: React.FC<IBlogLargeCard> = ({
         <div className="absolute bottom-0 left-0 flex flex-col justify-end p-6">
           <h2 className="text-white"></h2>
         </div>
-        <div className="absolute bottom-0 right-0 flex flex-col justify-end p-6">
+        <div className="absolute bottom-0 right-0 flex flex-col justify-end p-5">
           <ShareButton id={id} title={title} excerpt={excerpt} />
         </div>
       </div>
