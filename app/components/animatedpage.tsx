@@ -13,7 +13,7 @@ export function AnimatedPage({ children }: { children: ReactNode }) {
         key={pathname}
         initial={{ opacity: 0.2, filter: "blur(4px)", scale: 0.98 }}
         animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
-        exit={{ opacity: 0.2, filter: "blur(4px)", scale: 1.02 }}
+        exit={{ opacity: 0.2, filter: "blur(4px)", scale: 1.01 }}
         transition={{
           duration: 0.3,
           ease: [0.25, 0.46, 0.45, 0.94],
