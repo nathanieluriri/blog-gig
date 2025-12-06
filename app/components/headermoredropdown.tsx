@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { LuChevronDown } from "react-icons/lu";
 import clsx from "clsx";
@@ -32,34 +32,41 @@ const HeaderMoreDropdown: React.FC<HeaderMoreDropdownProps> = ({
           )}
         />
       </div>
-      {/* Dropdown – now 4 columns */}
       <div
         className={clsx(
-          "absolute right-0 top-full mt-3 w-[520px] bg-black rounded-lg shadow-2xl overflow-hidden border border-gray-800 transition-all duration-300 ease-out origin-top",
+          "absolute right-0 top-full mt-3 w-[580px] bg-black rounded-lg shadow-2xl overflow-hidden border border-gray-800 transition-all duration-300 ease-out origin-top",
           isOpen
             ? "opacity-100 scale-y-100 visible"
             : "opacity-0 scale-y-95 invisible"
         )}
-        style={{ transformOrigin: "top" }}
       >
-        <div className="columns-4 gap-0 p-6">
+        <div className="columns-3 gap-5 p-6">
           <Link
             href="/videos"
-            className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
             onClick={() => setIsOpen(false)}
+            className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
           >
             Videos
           </Link>
-          {/* Menu items */}
-          {items.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/categories/${item.slug}`}
-              className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </Link>
+          {items.map((item, index) => (
+            <React.Fragment key={item.slug ?? index}>
+              <Link
+                key={`article-${index}`}
+                href={`/articles/${item.slug}`}
+                className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name} Article
+              </Link>
+              <Link
+                key={`video-${index}`}
+                href={`/videos/${item.slug}`}
+                className="block py-2.5 text-sm tracking-wider text-white transition-colors hover:bg-zinc-900"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name} Video
+              </Link>
+            </React.Fragment>
           ))}
         </div>
       </div>

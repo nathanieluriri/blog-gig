@@ -29,14 +29,14 @@ const Header = async () => {
     );
   }
 
-  const mainCategories = allCategories.slice(0, 4);
-  const moreCategories = allCategories.slice(4);
+  const mainCategories = allCategories.slice(0, 5);
+  const moreCategories = allCategories.slice(0, 5);
 
   return (
     <header className="bg-black flex justify-between items-center px-3 py-5 lg:py-3 lg:px-7 sticky top-0 z-40">
       <div className="flex gap-10">
         <div className="flex gap-3">
-          <MobileMenu data={allCategories} />
+          <MobileMenu data={moreCategories} />
           <Link href="/">
             <Image
               src="/logo-footer.png"

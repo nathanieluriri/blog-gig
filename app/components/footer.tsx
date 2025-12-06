@@ -31,7 +31,7 @@ const Footer: React.FC = async () => {
     return shuffled.slice(0, count);
   };
 
-  const moreCategories = getRandomItems(allCategories, 8);
+  const moreCategories = getRandomItems(allCategories.splice(0, 5), 5);
 
   return (
     <footer className="bg-[#1A1A1A] text-gray-400 mt-6">
@@ -50,7 +50,7 @@ const Footer: React.FC = async () => {
             {moreCategories.map((category, index) => (
               <div className="flex flex-col gap-4" key={index}>
                 <Link
-                  href={`/categories/${category.slug}`}
+                  href={`/articles/${category.slug}`}
                   className="hover:text-white transition"
                 >
                   {category.name} Articles
@@ -85,8 +85,7 @@ const Footer: React.FC = async () => {
             className="w-14 h-10 absolute -top-5 left-1/2 transform -translate-x-1/3 bg-[#1A1A1A]"
           />
         </div>
-
-        <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-xs uppercase tracking-wider text-center px-6 w-full max-w-md">
+        <div className="grid grid-cols-2 gap-7 text-xs uppercase tracking-wider text-center px-6 w-full max-w-md">
           {moreCategories.map((category, index) => (
             <div className="flex flex-col gap-4" key={index}>
               <Link

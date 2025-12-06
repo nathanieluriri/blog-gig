@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoMdClose } from "react-icons/io";
 import Link from "next/link";
@@ -62,15 +62,24 @@ const MobileMenu: React.FC<IMobileMenuProps> = ({ data }) => {
           >
             Videos
           </Link>
-          {data.map((item) => (
-            <Link
-              key={item.slug}
-              href={`/categories/${item.slug}`}
-              onClick={() => setIsOpen(false)}
-              className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
-            >
-              {item.name}
-            </Link>
+
+          {data.map((item, index) => (
+            <React.Fragment key={item.slug ?? index}>
+              <Link
+                href={`/categories/${item.slug}`}
+                onClick={() => setIsOpen(false)}
+                className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
+              >
+                {item.name} Article
+              </Link>
+              <Link
+                href={`/videos/${item.slug}`}
+                onClick={() => setIsOpen(false)}
+                className="hover:text-gray-300 focus:text-gray-300 transition-colors underline underline-offset-8"
+              >
+                {item.name} Video
+              </Link>
+            </React.Fragment>
           ))}
         </div>
       </nav>
