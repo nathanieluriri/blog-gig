@@ -11,7 +11,7 @@ interface Props {
 const CategoryPage: React.FC<Props> = async ({ params }) => {
   const { id } = await params;
 
-  console.log("Category ID:", id);
+  console.log("Article ID:", id);
 
   let blogs: Blog[];
   const url = `${BASE_URL}/api/v1/articles/content/by-category-slug/${id}?start=${0}&stop=${9}`;
