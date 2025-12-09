@@ -458,6 +458,7 @@ export default function Home() {
                         src={player.img}
                         onError={(e) => (e.currentTarget.src = player.fallback)}
                         alt={player.name}
+                        fill
                         className="card-img w-full h-full object-cover object-top transition-transform duration-700 ease-out grayscale group-hover:grayscale-0"
                       />
                       <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent"></div>
