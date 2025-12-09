@@ -454,7 +454,7 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="absolute bottom-0 left-0 w-full h-3/4 overflow-hidden">
-                      <img
+                      <Image
                         src={player.img}
                         onError={(e) => (e.currentTarget.src = player.fallback)}
                         alt={player.name}
