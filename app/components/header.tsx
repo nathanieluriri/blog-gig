@@ -56,9 +56,6 @@ const Header = async () => {
               slug={category.slug}
             />
           ))}
-          {moreCategories.length > 0 && (
-            <HeaderMoreDropdown items={moreCategories} label="MORE" />
-          )}
         </nav>
       </div>
       <div>

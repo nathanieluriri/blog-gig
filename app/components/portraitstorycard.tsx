@@ -17,27 +17,32 @@ const PortraitStoryCard = ({
   href,
 }: PortraitStoryCardProps) => {
   return (
-    <article className="w-full group cursor-pointer overflow-hidden border border-gray-300 hover:border-black transition duration-150">
+    <article className="group w-full overflow-hidden border border-gray-300 hover:border-black transition-colors duration-200">
       <Link href={href} className="block">
-        <div className="relative overflow-hidden bg-gray-100">
+        {/* Image Container – Fixed aspect ratio so height never jumps */}
+        <div className="relative aspect-3/4 overflow-hidden bg-gray-100">
           <Image
             src={image}
             alt={title}
-            height={600}
-            width={600}
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover w-full h-80 md:h-52 transition-transform duration-500 group-hover:scale-105"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
             priority={false}
+            // Optional: placeholder="blur" blurDataURL="..." if you want shimmer
           />
         </div>
-        <div className="mt-3 space-y-3 px-6 pb-2 flex flex-col justify-between">
-          <h2 className="text-xl text-gray-900 leading-tight line-clamp-2">
+
+        {/* Text Content */}
+        <div className="px-6 pb-6 pt-4 space-y-4">
+          <h2 className="text-xl font-semibold text-gray-900 leading-tight line-clamp-2">
             {title}
           </h2>
+
           <p className="text-base text-gray-600 leading-relaxed line-clamp-3">
             {excerpt}
           </p>
-          <p className="pt-2 text-sm font-semibold text-gray-500 uppercase tracking-wider">
+
+          <p className="text-sm font-medium uppercase tracking-wider text-gray-500">
             {author}
           </p>
         </div>

@@ -5,7 +5,7 @@ import { BASE_URL } from "../util/api";
 
 const MostRecent = async () => {
   let blogs: Blog[];
-  const url = `${BASE_URL}/api/v1/articles/content?start=0&stop=4`;
+  const url = `${BASE_URL}/api/v1/articles/content/by-blog-type/normal?start=0&stop=10&sort=newest `;
   const res = await fetch(url, {
     next: { revalidate: 60 },
   });
@@ -52,9 +52,9 @@ const MostRecent = async () => {
         />
       </div>
       <div className="flex flex-col lg:flex-row gap-6 mt-5">
-        {portraitStoryData.map((blog) => (
+        {portraitStoryData.map((blog, index) => (
           <PortraitStoryCard
-            key={blog.slug}
+            key={index}
             image={blog.featureImage.url}
             title={blog.title}
             excerpt={blog.excerpt}
