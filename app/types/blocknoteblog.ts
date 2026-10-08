@@ -9,7 +9,7 @@ export interface BlogItem {
   author: Author;
   category: Category;
   blogType: "normal" | string; // Add other possible types
-  featureImage: FeatureImage;
+  featureImage: FeatureImage | null;
   pages: null | any; // Define more specifically if needed
   currentPageBody: Block[];
   id: string;

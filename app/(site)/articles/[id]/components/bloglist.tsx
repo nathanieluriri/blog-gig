@@ -6,6 +6,8 @@ import { useState } from "react";
 import CategoryCard from "./categorycard";
 import NextButton from "./nextbutton";
 
+export const PAGE_SIZE = 9;
+
 const BlogList = ({
   initialBlogs,
   categoryId,
@@ -14,9 +16,8 @@ const BlogList = ({
   categoryId: string;
 }) => {
   const [blogs, setBlogs] = useState<Blog[]>(initialBlogs);
-  const [start, setStart] = useState(10);
   const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(initialBlogs.length === PAGE_SIZE);
 
   const loadMore = async () => {
     if (isLoading || !hasMore) return;
@@ -25,8 +26,8 @@ const BlogList = ({
 
     try {
       const res = await fetch(
-        `${BASE_URL}/api/v1/articles/content/by-category-slug/${categoryId}?start=${start}&stop=${
-          start + 9
+        `${BASE_URL}/api/v1/articles/content/by-category-slug/${categoryId}?start=${blogs.length}&stop=${
+          blogs.length + PAGE_SIZE
         }`
       );
 
@@ -35,12 +36,8 @@ const BlogList = ({
       const data = await res.json();
       const newBlogs: Blog[] = data.data?.blogs || [];
 
-      if (newBlogs.length === 0) {
-        setHasMore(false);
-      } else {
-        setBlogs((prev) => [...prev, ...newBlogs]);
-        setStart((prev) => prev + 10);
-      }
+      setBlogs((prev) => [...prev, ...newBlogs]);
+      setHasMore(newBlogs.length === PAGE_SIZE);
     } catch (err) {
       console.error("Load more failed:", err);
     } finally {
@@ -57,8 +54,8 @@ const BlogList = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
         {blogs.map((blog, index) => (
           <CategoryCard
-            key={index}
-            image={blog.featureImage.url}
+            key={blog.id ?? index}
+            image={blog.featureImage?.url ?? "/sports.jpg"}
             title={blog.title}
             excerpt={blog.excerpt}
             author={blog.author.name}
@@ -75,11 +72,7 @@ const BlogList = ({
         </div>
       )}
 
-      {!hasMore && (
-        <p className="text-center py-8 text-gray-500">
-          You've reached the end!
-        </p>
-      )}
+      {!hasMore && <div className="py-8" />}
     </div>
   );
 };

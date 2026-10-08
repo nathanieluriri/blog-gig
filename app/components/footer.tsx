@@ -5,21 +5,14 @@ import { BASE_URL } from "../util/api";
 import { CategoryApiResponse } from "../types/category";
 
 const Footer: React.FC = async () => {
-  const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
-    next: { revalidate: 60 },
-  });
-
-  let allCategories = [];
-  if (res.ok) {
-    const data: CategoryApiResponse = await res.json();
-    allCategories = data.data.listOfCategories;
-  } else {
-    console.error("Failed to fetch categories:", res.status);
-    return (
-      <section className="py-10 text-center text-gray-500">
-        <p>Something went wrong loading the content.</p>
-      </section>
-    );
+  let allCategories: CategoryApiResponse["data"]["listOfCategories"] = [];
+  try {
+    const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
+      next: { revalidate: 300 },
+    });
+    if (res.ok) allCategories = ((await res.json()) as CategoryApiResponse).data?.listOfCategories ?? [];
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
   }
 
   const getRandomItems = (array: any[], count: any) => {

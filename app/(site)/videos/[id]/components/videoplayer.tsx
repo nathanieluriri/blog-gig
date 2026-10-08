@@ -8,7 +8,6 @@ import {
   useState,
 } from "react";
 import clsx from "clsx";
-import Video from "next-video";
 
 interface VideoPlayerProps {
   url: string;
@@ -129,9 +128,10 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
 
     return (
       <div className={clsx("bg-black w-full h-full", className)}>
-        <Video
+        <video
           ref={videoRef}
           src={url}
+          className="w-full h-full object-contain"
           controls={controls}
           autoPlay={playing}
           muted={muted}
@@ -141,7 +141,6 @@ const VideoPlayer = forwardRef<VideoPlayerHandle, VideoPlayerProps>(
           onPlay={handleVideoPlay}
           onPause={handleVideoPause}
           onEnded={onEnded}
-          type="hls"
         />
       </div>
     );

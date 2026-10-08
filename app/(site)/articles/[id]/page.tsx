@@ -2,7 +2,7 @@ import React from "react";
 import CategoryLargeCard from "./components/categorylargecard";
 import { BASE_URL } from "@/app/util/api";
 import { Blog } from "@/app/types/blog";
-import BlogList from "./components/bloglist";
+import BlogList, { PAGE_SIZE } from "./components/bloglist";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -11,13 +11,16 @@ interface Props {
 const CategoryPage: React.FC<Props> = async ({ params }) => {
   const { id } = await params;
 
-  console.log("Article ID:", id);
-
   let blogs: Blog[];
-  const url = `${BASE_URL}/api/v1/articles/content/by-category-slug/${id}?start=${0}&stop=${9}`;
-  const res = await fetch(url, {
-    next: { revalidate: 60 },
-  });
+  const url = `${BASE_URL}/api/v1/articles/content/by-category-slug/${id}?start=0&stop=${PAGE_SIZE}`;
+  const [res, categoriesRes] = await Promise.all([
+    fetch(url, { next: { revalidate: 60 } }),
+    fetch(`${BASE_URL}/api/v1/articles/content/categories`, { next: { revalidate: 3600 } }),
+  ]);
+  const categories: { slug: string; imageUrl: string | null }[] = categoriesRes.ok
+    ? ((await categoriesRes.json()).data?.listOfCategories ?? [])
+    : [];
+  const heroImage = categories.find((c) => c.slug === id)?.imageUrl ?? "/hands_raised.webp";
 
   if (!res.ok) {
     return (
@@ -45,10 +48,10 @@ const CategoryPage: React.FC<Props> = async ({ params }) => {
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <div className="text-gray-400 text-lg mb-2">📭</div>
           <h3 className="text-white text-xl font-semibold mb-2">
-            No categories found
+            No articles yet
           </h3>
           <p className="text-gray-400">
-            We couldn't find any categories matching your criteria.
+            There are no published articles in this category yet. Check back soon.
           </p>
         </div>
       </section>
@@ -62,7 +65,7 @@ const CategoryPage: React.FC<Props> = async ({ params }) => {
       <div>
         <CategoryLargeCard
           title={categoryName}
-          imageSrc="/hands_raised.webp"
+          imageSrc={heroImage}
           imageAlt={`${id} image`}
         />
       </div>

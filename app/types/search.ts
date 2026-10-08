@@ -22,7 +22,7 @@ export interface SearchBlogItem {
   author: SearchAuthor;
   category: SearchCategory;
   blogType: string;
-  featureImage: SearchFeatureImage;
+  featureImage: SearchFeatureImage | null;
   state: string;
   dateCreated: number;
   lastUpdated: number;

@@ -47,7 +47,7 @@ const Featured = async () => {
           title={billBoardFeaturedData.title}
           excerpt={billBoardFeaturedData.excerpt}
           author={billBoardFeaturedData.author.name}
-          imageUrl={billBoardFeaturedData.featureImage.url}
+          imageUrl={billBoardFeaturedData.featureImage?.url ?? "/sports.jpg"}
           href={`/blogs/${billBoardFeaturedData.id}`}
         />
       </div>
@@ -55,7 +55,7 @@ const Featured = async () => {
         {portraitStoryData.map((data) => (
           <PortraitStoryCard
             key={data.slug}
-            image={data.featureImage.url}
+            image={data.featureImage?.url ?? "/sports.jpg"}
             title={data.title}
             excerpt={data.excerpt}
             author={data.author.name}
