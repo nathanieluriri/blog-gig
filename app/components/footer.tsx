@@ -3,6 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { BASE_URL } from "../util/api";
 import { CategoryApiResponse } from "../types/category";
+import PhotoCredits from "./photocredits";
 
 const Footer: React.FC = async () => {
   let allCategories: CategoryApiResponse["data"]["listOfCategories"] = [];
@@ -64,6 +65,7 @@ const Footer: React.FC = async () => {
             The Player's Rising, © {new Date().getFullYear()} All
             rights reserved.
           </p>
+          <PhotoCredits className="text-center mt-2 px-4 max-w-4xl mx-auto" />
         </div>
       </div>
 
@@ -102,6 +104,7 @@ const Footer: React.FC = async () => {
             The Player's Rising, © {new Date().getFullYear()} All
             rights reserved.
           </p>
+          <PhotoCredits className="text-center mt-2 px-4 max-w-4xl mx-auto" />
         </div>
       </div>
     </footer>

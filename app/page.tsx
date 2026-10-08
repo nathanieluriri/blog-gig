@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import PhotoCredits from "./components/photocredits";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -18,11 +19,11 @@ export default function Home() {
       alt: "Eberechi Eze",
     },
     {
-      src: "/landing_page/Kobbie.webp",
+      src: "/landing_page/mainoo.jpg",
       alt: "Kobbie Mainoo",
     },
     {
-      src: "/landing_page/Marcus.jpeg",
+      src: "/landing_page/rashford.jpg",
       alt: "Marcus Rashford",
     },
     {
@@ -46,7 +47,7 @@ export default function Home() {
       name: "Marcus Rashford",
       club: "Manchester United",
       tag: "02 The Icon",
-      img: "/landing_page/Marcus.jpeg",
+      img: "/landing_page/rashford.jpg",
     },
     {
       name: "Mason Greenwood",
@@ -58,7 +59,7 @@ export default function Home() {
       name: "Kobbie Mainoo",
       club: "Manchester United",
       tag: "04 The Breakout",
-      img: "/landing_page/Kobbie.webp",
+      img: "/landing_page/mainoo.jpg",
     },
     {
       name: "Victor Osimhen",
@@ -466,6 +467,7 @@ export default function Home() {
             <div className="flex-1 md:text-right">
               <p className="mb-2">© 2025 The Players Rising.</p>
               <p>Supervisor: Media Studies Dept.</p>
+              <PhotoCredits className="mt-4 text-zinc-600" />
             </div>
           </section>
         </main>

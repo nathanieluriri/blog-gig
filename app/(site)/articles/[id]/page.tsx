@@ -20,7 +20,7 @@ const CategoryPage: React.FC<Props> = async ({ params }) => {
   const categories: { slug: string; imageUrl: string | null }[] = categoriesRes.ok
     ? ((await categoriesRes.json()).data?.listOfCategories ?? [])
     : [];
-  const heroImage = categories.find((c) => c.slug === id)?.imageUrl ?? "/hands_raised.webp";
+  const heroImage = categories.find((c) => c.slug === id)?.imageUrl ?? "/sports.jpg";
 
   if (!res.ok) {
     return (
