@@ -1,6 +1,6 @@
-import Featured from "../components/featured";
-import HeroSection from "../components/herosection";
-import MostRecent from "../components/mostrecent";
+import Featured from "@/app/components/featured";
+import HeroSection from "@/app/components/herosection";
+import MostRecent from "@/app/components/mostrecent";
 
 const Home = () => {
   return (

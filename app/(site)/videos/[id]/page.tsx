@@ -15,10 +15,8 @@ const VideoBySlugPage = async ({ params }: Props) => {
     return notFound();
   }
 
-  console.log("Category ID:", id);
 
   const categoryUrl = `${BASE_URL}/api/v1/media/by-category/${id}`;
-  console.log("Fetching category videos from:", categoryUrl);
 
   const categoryRes = await fetch(categoryUrl, {
     next: { revalidate: 60 },

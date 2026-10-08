@@ -47,7 +47,7 @@ const MostRecent = async () => {
           title={billBoardRecentData.title}
           excerpt={billBoardRecentData.excerpt}
           author={billBoardRecentData.author.name}
-          imageUrl={billBoardRecentData.featureImage.url}
+          imageUrl={billBoardRecentData.featureImage?.url ?? "/sports.jpg"}
           href={`/blogs/${billBoardRecentData.id}`}
         />
       </div>
@@ -55,7 +55,7 @@ const MostRecent = async () => {
         {portraitStoryData.map((blog, index) => (
           <PortraitStoryCard
             key={index}
-            image={blog.featureImage.url}
+            image={blog.featureImage?.url ?? "/sports.jpg"}
             title={blog.title}
             excerpt={blog.excerpt}
             author={blog.author.name}

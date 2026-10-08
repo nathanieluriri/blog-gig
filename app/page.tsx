@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,31 +10,27 @@ export default function Home() {
   const navRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLElement>(null);
   const cohortContainerRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   const slides = [
     {
       src: "/landing_page/eberechi.jpg",
-      fallback: "https://placehold.co/1920x1080/111/fff?text=Eze",
       alt: "Eberechi Eze",
     },
     {
       src: "/landing_page/Kobbie.webp",
-      fallback: "https://placehold.co/1920x1080/111/fff?text=Mainoo",
       alt: "Kobbie Mainoo",
     },
     {
       src: "/landing_page/Marcus.jpeg",
-      fallback: "https://placehold.co/1920x1080/111/fff?text=Rashford",
       alt: "Marcus Rashford",
     },
     {
       src: "/landing_page/mason.jpg",
-      fallback: "https://placehold.co/1920x1080/111/fff?text=Greenwood",
       alt: "Mason Greenwood",
     },
     {
       src: "/landing_page/Osimhen.webp",
-      fallback: "https://placehold.co/1920x1080/111/fff?text=Osimhen",
       alt: "Victor Osimhen",
     },
   ];
@@ -44,35 +41,30 @@ export default function Home() {
       club: "Crystal Palace",
       tag: "01 The Creative",
       img: "/landing_page/eberechi.jpg",
-      fallback: "https://placehold.co/400x500/e5e5e5/000000?text=Eze",
     },
     {
       name: "Marcus Rashford",
       club: "Manchester United",
       tag: "02 The Icon",
       img: "/landing_page/Marcus.jpeg",
-      fallback: "https://placehold.co/400x500/e5e5e5/000000?text=Rashford",
     },
     {
       name: "Mason Greenwood",
       club: "Marseille",
       tag: "03 The Complex",
       img: "/landing_page/mason.jpg",
-      fallback: "https://placehold.co/400x500/e5e5e5/000000?text=Greenwood",
     },
     {
       name: "Kobbie Mainoo",
       club: "Manchester United",
       tag: "04 The Breakout",
       img: "/landing_page/Kobbie.webp",
-      fallback: "https://placehold.co/400x500/e5e5e5/000000?text=Mainoo",
     },
     {
       name: "Victor Osimhen",
       club: "Galatasaray",
       tag: "05 The Star",
       img: "/landing_page/Osimhen.webp",
-      fallback: "https://placehold.co/400x500/e5e5e5/000000?text=Osimhen",
     },
   ];
 
@@ -96,7 +88,7 @@ export default function Home() {
     };
     startAutoPlay();
 
-    const hero = document.querySelector("header");
+    const hero = heroRef.current;
     const handleMouseEnter = () => clearInterval(interval);
     const handleMouseLeave = () => startAutoPlay();
 
@@ -115,14 +107,7 @@ export default function Home() {
       const nav = navRef.current;
       const content = contentRef.current;
 
-      if (window.scrollY > 200) {
-        nav?.classList.add("scrolled");
-        nav?.classList.remove("justify-between", "px-8");
-        nav?.classList.add("justify-center");
-      } else {
-        nav?.classList.remove("scrolled", "justify-center");
-        nav?.classList.add("justify-between", "px-8");
-      }
+      nav?.classList.toggle("scrolled", window.scrollY > 200);
 
       if (window.scrollY < 800 && content) {
         const curveFactor = Math.max(0, 80 - window.scrollY / 15);
@@ -166,29 +151,6 @@ export default function Home() {
   return (
     <>
       <style jsx global>{`
-        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap");
-
-        html,
-        body {
-          overflow-x: hidden;
-          overflow-y: visible;
-        }
-
-        ::-webkit-scrollbar {
-          width: 6px;
-          height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-          background: #050505;
-        }
-        ::-webkit-scrollbar-thumb {
-          background: #333;
-          border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-          background: #555;
-        }
-
         .metallic-hero {
           position: sticky;
           top: 0;
@@ -226,22 +188,23 @@ export default function Home() {
           z-index: 20;
         }
 
-        nav {
+        #navbar {
           transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
           width: 100%;
           left: 0;
         }
-        nav.scrolled {
+        #navbar.scrolled {
           width: fit-content;
           left: 50%;
           transform: translateX(-50%);
           top: 20px;
-          padding: 0 24px;
+          gap: 24px;
+          padding: 0 8px 0 24px;
           border-radius: 50px;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(10, 10, 10, 0.6);
           backdrop-filter: blur(12px);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          height: 50px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          height: 52px;
         }
 
         .reveal {
@@ -280,11 +243,11 @@ export default function Home() {
         }
       `}</style>
 
-      <div className="scroll-smooth bg-black overflow-x-hidden antialiased">
+      <div className="bg-black text-white overflow-x-clip">
         <nav
           ref={navRef}
           id="navbar"
-          className="fixed top-0 z-50 h-20 border-b border-white/5 bg-black/0 flex items-center justify-between px-8"
+          className="fixed top-0 z-50 h-20 border-b border-white/5 flex items-center justify-between px-5 md:px-8"
         >
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-white animate-pulse"></div>
@@ -292,29 +255,33 @@ export default function Home() {
               The Players Rising
             </span>
           </div>
-          <a
-            href="https://www.theplayersrising.com/"
+          <Link
+            href="/blog"
             className="text-[10px] font-bold uppercase tracking-widest px-5 py-2.5 bg-white text-black rounded-full hover:bg-zinc-200 transition-all"
           >
             Read Articles
-          </a>
+          </Link>
         </nav>
 
-        <header className="metallic-hero flex items-center justify-center relative group">
+        <header ref={heroRef} className="metallic-hero flex items-center justify-center relative group">
           <div className="absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute inset-0 z-10 bg-linear-to-b from-black/60 via-black/30 to-black/80" />
             <div
               ref={carouselRef}
               id="carousel-track"
               className="flex h-full w-full transition-transform duration-1000 ease-out will-change-transform"
             >
               {slides.map((slide) => (
-                <img
-                  key={slide.alt}
-                  src={slide.src}
-                  onError={(e) => (e.currentTarget.src = slide.fallback)}
-                  alt={slide.alt}
-                  className="w-full h-full object-cover shrink-0 opacity-40 mix-blend-luminosity"
-                />
+                <div key={slide.alt} className="relative w-full h-full shrink-0">
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    sizes="100vw"
+                    priority={slide.alt === slides[0].alt}
+                    className="object-cover object-top opacity-40"
+                  />
+                </div>
               ))}
             </div>
           </div>
@@ -323,13 +290,15 @@ export default function Home() {
             onClick={() =>
               setCurrentIndex((i) => (i - 1 + slides.length) % slides.length)
             }
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all backdrop-blur-md"
+            aria-label="Previous slide"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex w-12 h-12 rounded-full border border-white/20 items-center justify-center text-xl text-white/70 hover:bg-white hover:text-black hover:border-white transition-all backdrop-blur-md"
           >
             ‹
           </button>
           <button
             onClick={() => setCurrentIndex((i) => (i + 1) % slides.length)}
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/50 hover:bg-white hover:text-black hover:border-white transition-all backdrop-blur-md"
+            aria-label="Next slide"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-50 hidden md:flex w-12 h-12 rounded-full border border-white/20 items-center justify-center text-xl text-white/70 hover:bg-white hover:text-black hover:border-white transition-all backdrop-blur-md"
           >
             ›
           </button>
@@ -342,13 +311,13 @@ export default function Home() {
                 From Academy to First Team
               </span>
             </div>
-            <h1 className="text-6xl md:text-[7.5rem] font-extrabold uppercase tracking-tighter leading-[0.9] mix-blend-lighten opacity-95">
+            <h1 className="text-5xl sm:text-6xl md:text-[7.5rem] font-extrabold uppercase tracking-tighter leading-[0.9] text-white drop-shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
               Media, Narrative <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-600">
+              <span className="text-transparent bg-clip-text bg-linear-to-b from-white to-zinc-400">
                 & The Star
               </span>
             </h1>
-            <p className="text-zinc-400 text-sm md:text-lg mt-8 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-zinc-300 text-sm md:text-lg mt-8 max-w-2xl mx-auto leading-relaxed">
               How media systems and narratives shape public perceptions, career
               opportunities, and athlete branding during the youth-to-pro
               transition.
@@ -359,14 +328,14 @@ export default function Home() {
         <main
           ref={contentRef}
           id="content"
-          className="content-wrapper rounded-t-[5rem] border-t border-white/10 shadow-[0_-50px_100px_rgba(0,0,0,0.8)] pt-20"
+          className="content-wrapper rounded-t-[3rem] md:rounded-t-[5rem] border-t border-white/10 shadow-[0_-50px_100px_rgba(0,0,0,0.8)] pt-20"
         >
           <section className="max-w-7xl mx-auto px-6 py-20">
-            <div className="flex flex-col md:flex-row justify-between items-end mb-16 border-b border-white/10 pb-8 reveal">
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16 border-b border-white/10 pb-8 reveal">
               <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-zinc-500">
                 Project Aims
               </h2>
-              <div className="text-right">
+              <div className="md:text-right">
                 <p className="text-white text-xl md:text-3xl font-bold max-w-lg">
                   Mapping the transition from "Academy Prospect" to "First Team
                   Star."
@@ -384,11 +353,11 @@ export default function Home() {
                     <span className="block text-[10px] uppercase tracking-widest text-zinc-500 mb-2">
                       Aim 0{i + 1}
                     </span>
-                    <h3 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter group-hover:translate-x-4 transition-transform duration-500">
+                    <h3 className="text-4xl md:text-6xl font-extrabold uppercase tracking-tighter text-white group-hover:translate-x-4 transition-transform duration-500">
                       {title}
                     </h3>
                   </div>
-                  <p className="text-zinc-400 text-sm max-w-xs text-right">
+                  <p className="text-zinc-400 text-sm max-w-xs md:text-right">
                     {i === 0 &&
                       "Constructing verified career timelines and media-attention counts for five key players."}
                     {i === 1 &&
@@ -402,7 +371,7 @@ export default function Home() {
           </section>
 
           <section className="py-24 bg-[#0a0a0a] border-t border-white/10 relative">
-            <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end reveal">
+            <div className="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end gap-6 reveal">
               <div>
                 <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tighter text-white">
                   The Case Studies
@@ -414,13 +383,15 @@ export default function Home() {
               <div className="flex gap-2">
                 <button
                   onClick={() => scrollCohort("left")}
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+                  aria-label="Scroll left"
+                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
                 >
                   ←
                 </button>
                 <button
                   onClick={() => scrollCohort("right")}
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all"
+                  aria-label="Scroll right"
+                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all"
                 >
                   →
                 </button>
@@ -435,11 +406,11 @@ export default function Home() {
               {players.map((player, i) => (
                 <div
                   key={player.name}
-                  className={`min-w-[350px] md:min-w-[400px] snap-start reveal ${
+                  className={`min-w-[85%] sm:min-w-[350px] md:min-w-[400px] snap-start reveal ${
                     i === 1 ? "stagger-1" : i === 2 ? "stagger-2" : ""
                   }`}
                 >
-                  <div className="player-card h-[500px bg-black rounded-4xl overflow-hidden flex flex-col relative group border border-white/10">
+                  <div className="player-card h-[500px] bg-black rounded-4xl overflow-hidden flex flex-col relative group border border-white/10">
                     <div className="p-8 pb-0 z-10">
                       <span className="inline-block px-3 py-1 bg-white text-black rounded-full text-[10px] font-bold uppercase tracking-wider mb-4">
                         {player.tag}
@@ -453,15 +424,15 @@ export default function Home() {
                         {player.club}
                       </p>
                     </div>
-                    <div className="absolute bottom-0 left-0 w-full h-3/4 overflow-hidden">
+                    <div className="absolute bottom-0 left-0 w-full h-[62%] overflow-hidden">
                       <Image
                         src={player.img}
-                        onError={(e) => (e.currentTarget.src = player.fallback)}
                         alt={player.name}
                         fill
+                        sizes="(min-width: 768px) 400px, 85vw"
                         className="card-img w-full h-full object-cover object-top transition-transform duration-700 ease-out grayscale group-hover:grayscale-0"
                       />
-                      <div className="absolute inset-0 bg-linear-to-t from-black/10 to-transparent"></div>
+                      <div className="absolute inset-0 bg-linear-to-b from-black via-transparent to-black/40"></div>
                     </div>
                     <div className="absolute bottom-6 right-6 w-12 h-12 bg-black rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 border border-white/20">
                       ↗
@@ -492,7 +463,7 @@ export default function Home() {
                 "comeback."
               </p>
             </div>
-            <div className="flex-1 text-right">
+            <div className="flex-1 md:text-right">
               <p className="mb-2">© 2025 The Players Rising.</p>
               <p>Supervisor: Media Studies Dept.</p>
             </div>

@@ -22,7 +22,7 @@ export interface Blog {
   author: Author;
   category: Category;
   blogType: string;
-  featureImage: FeatureImage;
+  featureImage: FeatureImage | null;
   state: string;
   dateCreated: number; // Unix timestamp (seconds)
   lastUpdated: number; // Unix timestamp (seconds)

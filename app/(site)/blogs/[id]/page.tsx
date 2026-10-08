@@ -3,7 +3,7 @@ import Featured from "@/app/components/featured";
 import AuthorCard from "./components/authorcard";
 import { BASE_URL } from "@/app/util/api";
 import { BlogApiResponse, BlogItem } from "@/app/types/blocknoteblog";
-import BlockNoteRenderer from "./components/blocknoterenderer";
+import BlockNoteRenderer from "./components/blocknoteview";
 
 interface IBlogPageByIdProps {
   params: Promise<{ id: string }>;
@@ -12,7 +12,6 @@ interface IBlogPageByIdProps {
 const BlogPageById: React.FC<IBlogPageByIdProps> = async ({ params }) => {
   const { id } = await params;
 
-  console.log("Category ID:", id);
 
   let blog: BlogItem;
   const url = `${BASE_URL}/api/v1/articles/content/${id}`;
@@ -48,10 +47,10 @@ const BlogPageById: React.FC<IBlogPageByIdProps> = async ({ params }) => {
     <section className="2xl:max-w-[1470px] mx-auto">
       <BlogLargeCard
         id={id}
-        imageSrc={blog.featureImage.url}
+        imageSrc={blog.featureImage?.url ?? "/sports.jpg"}
         title={blog.title}
         excerpt={blog.excerpt}
-        imageAlt={`Image showing ${blog.featureImage.altText}`}
+        imageAlt={blog.featureImage?.altText ?? blog.title}
       />
       <section className="flex flex-col lg:gap-10 lg:grid relative lg:grid-cols-12 bg-white px-4 py-5">
         <div className="lg:col-span-2 pb-10 md:pb-0">

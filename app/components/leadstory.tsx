@@ -37,15 +37,14 @@ const BillboardHero = ({
               </div>
             </div>
             <div className="order-1 lg:order-2 col-span-4">
-              <div className="relative overflow-hidden ">
+              <div className="relative overflow-hidden aspect-video lg:aspect-auto lg:h-[440px]">
                 <Image
                   src={imageUrl}
                   alt={title}
                   priority
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  className="object-cover transition-transform duration-700 hover:scale-105 w-full"
-                  height={600}
-                  width={600}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover transition-transform duration-700 hover:scale-105"
                 />
               </div>
             </div>

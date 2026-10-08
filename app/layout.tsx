@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { AnimatedPage } from "./components/animatedpage";
-import Header from "./components/header";
-import Footer from "./components/footer";
 import ProgressBarProvider from "./components/progressbar";
 
 const geistSans = Geist({
@@ -17,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://theplayersrising.com"),
   title: {
     default: "The Players Rising",
     template: "%s | The Players Rising",
@@ -29,14 +27,7 @@ export const metadata: Metadata = {
       "The ultimate sports blog featuring athlete stories, game analysis, and rising stars in football, basketball, and more.",
     url: "https://theplayersrising.com/",
     siteName: "The Players Rising",
-    images: [
-      {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "The Players Rising - Sports Blog",
-      },
-    ],
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "The Players Rising" }],
     locale: "en_US",
     type: "website",
   },
@@ -45,7 +36,7 @@ export const metadata: Metadata = {
     title: "The Players Rising",
     description:
       "The ultimate sports blog featuring athlete stories, game analysis, and rising stars.",
-    images: ["/logo.svg"],
+    images: ["/og-image.jpg"],
   },
   keywords: [
     "sports blog",
@@ -84,20 +75,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable}`}
-      style={{
-        scrollbarWidth: "thin",
-        scrollbarColor: "#374151 #000000",
-      }}
-    >
-      <body className="relative bg-[#1A1A1A]">
-        <ProgressBarProvider>
-          <Header />
-          <AnimatedPage>{children}</AnimatedPage>
-          <Footer />
-        </ProgressBarProvider>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="relative bg-[#1A1A1A] font-sans antialiased">
+        <ProgressBarProvider>{children}</ProgressBarProvider>
       </body>
     </html>
   );

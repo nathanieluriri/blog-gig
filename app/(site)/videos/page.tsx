@@ -1,7 +1,7 @@
 import VideoLargeCard from "./components/videolargecard";
 import VideoList from "./components/videolist";
 import { BASE_URL } from "@/app/util/api";
-import { CategoryApiResponse, Category } from "../types/category";
+import { CategoryApiResponse, Category } from "@/app/types/category";
 
 export const revalidate = 60;
 

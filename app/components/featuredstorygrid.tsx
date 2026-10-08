@@ -13,7 +13,7 @@ const FeaturedStoryGrid: React.FC<IFeaturedStoryGridProps> = ({ blogs }) => {
         {blogs.map((blog) => (
           <FeaturedStoryCard
             key={blog.id}
-            ImgUrl={blog.featureImage.url}
+            ImgUrl={blog.featureImage?.url ?? "/sports.jpg"}
             headerText={blog.title}
             paragraphText={blog.excerpt}
             href={`/blogs/${blog.id}`}

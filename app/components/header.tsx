@@ -12,21 +12,14 @@ export interface IMenuItems {
 }
 
 const Header = async () => {
-  const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
-    cache: "no-cache",
-  });
-
-  let allCategories = [];
-  if (res.ok) {
-    const data = await res.json();
-    allCategories = data.data.listOfCategories;
-  } else {
-    console.error("Failed to fetch categories:", res.status);
-    return (
-      <section className="py-10 text-center text-gray-500">
-        <p>Something went wrong loading the content.</p>
-      </section>
-    );
+  let allCategories: IMenuItems[] = [];
+  try {
+    const res = await fetch(`${BASE_URL}/api/v1/articles/content/categories`, {
+      next: { revalidate: 300 },
+    });
+    if (res.ok) allCategories = (await res.json()).data?.listOfCategories ?? [];
+  } catch (error) {
+    console.error("Failed to fetch categories:", error);
   }
 
   const mainCategories = allCategories.slice(0, 5);
@@ -37,7 +30,7 @@ const Header = async () => {
       <div className="flex gap-10">
         <div className="flex gap-3">
           <MobileMenu data={moreCategories} />
-          <Link href="/">
+          <Link href="/blog">
             <Image
               src="/logo-footer.png"
               alt="blog logo"
