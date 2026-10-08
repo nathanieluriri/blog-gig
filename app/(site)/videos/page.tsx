@@ -29,7 +29,7 @@ const VideosPage = async () => {
       <section className="min-h-screen">
         <VideoLargeCard
           title="Videos"
-          imageSrc="/hands_raised.webp"
+          imageSrc="/sports.jpg"
           imageAlt="Videos header"
         />
         <div className="max-w-7xl mx-auto px-4 py-12 text-center">
@@ -45,7 +45,7 @@ const VideosPage = async () => {
     <div className="bg-white min-h-screen">
       <VideoLargeCard
         title="Videos"
-        imageSrc={categories[0].imageUrl || "/hands_raised.webp"}
+        imageSrc={categories[0].imageUrl || "/sports.jpg"}
         imageAlt={categories[0].slug || "People raising hands"}
       />
       <div className="max-w-7xl mx-auto px-4 py-8">
